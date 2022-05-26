@@ -335,7 +335,14 @@ document.addEventListener('click', (e) => {
 										userHelp = 3;
 										helpText = getNoun(userHelp);
 										elmReward.classList.remove('show');
+										updateReward();
 									});
+							})
+							.catch(() => {
+								console.log('2');
+							})
+							.catch(() => {
+								console.log('1');
 							})
 					} else {
 						userHelp = 3;
@@ -343,8 +350,7 @@ document.addEventListener('click', (e) => {
 						elmReward.classList.remove('show');
 					}
 				}
-				elmReward.firstElementChild.textContent = userHelp;
-				elmReward.lastElementChild.textContent = helpText;
+				updateReward();
 			}
 		}
 	}
@@ -354,6 +360,13 @@ document.addEventListener('click', (e) => {
 		createSound(sndClick);
 	}
 })
+
+//================================================================================
+
+function updateReward() {
+	elmReward.firstElementChild.textContent = userHelp;
+	elmReward.lastElementChild.textContent = helpText;
+}
 
 //================================================================================
 
