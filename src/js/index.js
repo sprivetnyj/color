@@ -335,12 +335,13 @@ document.addEventListener('click', (e) => {
 										userHelp = 3;
 										helpText = getNoun(userHelp);
 										elmReward.classList.remove('show');
+										updateReward();
 									})
 									.catch(() => {
 										helpText = 'нет рекламы';
 										elmReward.classList.add('error');
+										updateReward();
 									})
-								updateReward();
 							})
 					} else {
 						userHelp = 3;
