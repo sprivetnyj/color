@@ -336,10 +336,10 @@ document.addEventListener('click', (e) => {
 										helpText = getNoun(userHelp);
 										elmReward.classList.remove('show');
 										updateReward();
-									});
-							})
-							.catch(() => {
-								console.log('2');
+									})
+									.catch(() => {
+										console.log('2');
+									})
 							})
 							.catch(() => {
 								console.log('1');
