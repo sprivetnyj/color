@@ -274,7 +274,7 @@ body {
 	border-radius: 25px;
 	background-color: rgb(255, 144, 41);
 	transition: transform 0.2s, background-color 0.2s;
-	&.scale {
+	&.scale:not(.error) {
 		transform: scale(1.1);
 		background-color: rgba(255, 144, 41, 0.9);
 	}
@@ -293,6 +293,12 @@ body {
 	}
 	&.hidden {
 		display: none;
+	}
+	&.error {
+		background-color: #999;
+		.reward__count {
+			display: none;
+		}
 	}
 	// .reward__count
 	&__count {
