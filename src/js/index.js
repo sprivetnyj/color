@@ -8,6 +8,9 @@ const mode = 'prod';
 import sndRecord from '../audio/record.mp3';
 import sndClick from '../audio/click.mp3';
 import sndEnd from '../audio/end.mp3';
+import sndConfetti from '../audio/confetti.wav';
+import sndConfetti2 from '../audio/confetti2.wav';
+import sndPath from '../audio/path.wav';
 
 import { map } from './shapes.js';
 
@@ -68,6 +71,8 @@ let userScore = 0;
 let highScore = 0;
 let userHelp = 3;
 
+let lastSound = true;
+
 if (mode === 'prod') {
 	// vkBridge.send('VKWebAppStorageGet', { 'keys': ['highscore0'] })
 	// 	.then(data => {
@@ -79,7 +84,7 @@ if (mode === 'prod') {
 	// 	})
 	setTimeout(() => {
 		preloader.classList.add('hidden');
-	}, 1000);
+	}, 2000);
 } else {
 	setTimeout(() => {
 		preloader.classList.add('hidden');
@@ -293,6 +298,9 @@ document.addEventListener('click', (e) => {
 		if (game) {
 			if (el.closest('.shape__button')) {
 				if (!el.parentElement.classList.contains('disabled')) {
+					if (!steps.length) {
+						elmBack.classList.remove('hidden');
+					}
 					elmShapePaths.forEach(path => {
 						if (path.getAttribute('fill') === el.parentElement.getAttribute('data-color')) {
 							elmShape.insertAdjacentElement('beforeend', path);
@@ -303,6 +311,9 @@ document.addEventListener('click', (e) => {
 							}
 						}
 					});
+					if (lastSound) {
+						createSound(sndPath);
+					}
 				}
 			} else if (el === elmBack) {
 				if (elmShape.lastElementChild.classList.contains('shape__path')) {
@@ -313,6 +324,9 @@ document.addEventListener('click', (e) => {
 						}
 					});
 					elmShape.lastElementChild.remove();
+					if (!steps.length) {
+						elmBack.classList.add('hidden');
+					}
 				}
 			}
 			else if (el.closest('.reward')) {
@@ -356,7 +370,13 @@ document.addEventListener('click', (e) => {
 	// Если клик по кнопке, то увеличим ее и создадим звук
 	if (el.closest('button')) {
 		animState([el.closest('button')], 200);
-		createSound(sndClick);
+		if (lastSound) {
+			if (!el.closest('.back')) {
+				createSound(sndClick);
+			} else {
+				createSound(sndPath);
+			}
+		}
 	}
 })
 
@@ -373,6 +393,8 @@ function checkLastPath() {
 	const stepsOrder = steps.map((step) => step.getAttribute('data-index'));
 	shapeOrders.forEach(shapeOrder => {
 		if (JSON.stringify(shapeOrder) === JSON.stringify(stepsOrder)) {
+			createSound(sndConfetti);
+			lastSound = false;
 			elmHome.classList.add('hidden');
 			elmScore.classList.add('hidden');
 			elmBack.classList.add('hidden');
@@ -386,10 +408,10 @@ function checkLastPath() {
 			});
 			setTimeout(() => {
 				lvl++;
+				lastSound = true;
 				elmScore.textContent = lvl + 1;
 				elmHome.classList.remove('hidden');
 				elmScore.classList.remove('hidden');
-				elmBack.classList.remove('hidden');
 				elmReward.classList.remove('hidden');
 				elmShape.remove();
 				elmShapeBg.remove();
@@ -450,6 +472,7 @@ function showPath() {
 				shapeButton.classList.add('disabled');
 			}
 		});
+		elmBack.classList.remove('hidden');
 	}
 }
 

@@ -10,7 +10,7 @@ export const js = () => {
 			module: {
 				rules: [
 					{
-						test: /\.mp3$/,
+						test: /\.(wav|mp3)$/,
 						loader: 'file-loader',
 						options: {
 							name: '../audio/[name].[ext]',
