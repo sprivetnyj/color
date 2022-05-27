@@ -1,17 +1,35 @@
 //================================================================================
 
-const mode = 'dev';
+import sndClick from '../audio/click.wav';
+
+//================================================================================
+
+const audio = {
+	Click: new Howl({
+		src: './audio/click.wav',
+		html5: true,
+		volume: 1
+	})
+}
+
+//================================================================================
+
+const mode = 'prod';
 vkBridge.send('VKWebAppInit');
 
 //================================================================================
 
-import sndClick from '../audio/click.wav';
-import sndConfetti from '../audio/confetti.wav';
-import sndPath from '../audio/path.wav';
+
+// import sndConfetti from '../audio/confetti.wav';
+// import sndPath from '../audio/path.wav';
 
 import { map } from './shapes.js';
 
 //================================================================================
+
+document.addEventListener('click', () => {
+	audio.Click.play();
+});
 
 // Холст
 const canvas = document.querySelector('canvas');
