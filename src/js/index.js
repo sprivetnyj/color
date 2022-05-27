@@ -1,20 +1,15 @@
 //================================================================================
 
-const mode = 'prod';
+const mode = 'dev';
+vkBridge.send('VKWebAppInit');
 
 //================================================================================
 
-// Импорт всех звуков
-import sndRecord from '../audio/record.mp3';
-import sndClick from '../audio/click.mp3';
-import sndEnd from '../audio/end.mp3';
+import sndClick from '../audio/click.wav';
 import sndConfetti from '../audio/confetti.wav';
-import sndConfetti2 from '../audio/confetti2.wav';
 import sndPath from '../audio/path.wav';
 
 import { map } from './shapes.js';
-
-vkBridge.send('VKWebAppInit');
 
 //================================================================================
 
@@ -312,7 +307,9 @@ document.addEventListener('click', (e) => {
 						}
 					});
 					if (lastSound) {
-						createSound(sndPath);
+						const sound = new Audio();
+						sound.src = './audio/path.wav';
+						sound.play();
 					}
 				}
 			} else if (el === elmBack) {
@@ -371,11 +368,13 @@ document.addEventListener('click', (e) => {
 	if (el.closest('button')) {
 		animState([el.closest('button')], 200);
 		if (lastSound) {
-			if (!el.closest('.back')) {
-				createSound(sndClick);
+			const sound = new Audio();
+			if (!el.closest('.home')) {
+				sound.src = './audio/path.wav';
 			} else {
-				createSound(sndPath);
+				sound.src = './audio/click.wav';
 			}
+			sound.play();
 		}
 	}
 })
@@ -393,7 +392,9 @@ function checkLastPath() {
 	const stepsOrder = steps.map((step) => step.getAttribute('data-index'));
 	shapeOrders.forEach(shapeOrder => {
 		if (JSON.stringify(shapeOrder) === JSON.stringify(stepsOrder)) {
-			createSound(sndConfetti);
+			const sound = new Audio();
+			sound.src = './audio/confetti.wav';
+			sound.play();
 			lastSound = false;
 			elmHome.classList.add('hidden');
 			elmScore.classList.add('hidden');
