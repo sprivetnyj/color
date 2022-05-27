@@ -1,16 +1,7 @@
 //================================================================================
 
-import sndClick from '../audio/click.wav';
-
-//================================================================================
-
-const audio = {
-	Click: new Howl({
-		src: './audio/click.wav',
-		html5: true,
-		volume: 1
-	})
-}
+import { map } from './shapes.js';
+import { audio } from './audio.js';
 
 //================================================================================
 
@@ -18,18 +9,6 @@ const mode = 'prod';
 vkBridge.send('VKWebAppInit');
 
 //================================================================================
-
-
-// import sndConfetti from '../audio/confetti.wav';
-// import sndPath from '../audio/path.wav';
-
-import { map } from './shapes.js';
-
-//================================================================================
-
-document.addEventListener('click', () => {
-	audio.Click.play();
-});
 
 // Холст
 const canvas = document.querySelector('canvas');
@@ -325,9 +304,7 @@ document.addEventListener('click', (e) => {
 						}
 					});
 					if (lastSound) {
-						const sound = new Audio();
-						sound.src = './audio/path.wav';
-						sound.play();
+						audio.Path.play();
 					}
 				}
 			} else if (el === elmBack) {
@@ -386,13 +363,11 @@ document.addEventListener('click', (e) => {
 	if (el.closest('button')) {
 		animState([el.closest('button')], 200);
 		if (lastSound) {
-			const sound = new Audio();
 			if (!el.closest('.home')) {
-				sound.src = './audio/path.wav';
+				audio.Path.play();
 			} else {
-				sound.src = './audio/click.wav';
+				audio.Click.play();
 			}
-			sound.play();
 		}
 	}
 })
@@ -410,9 +385,7 @@ function checkLastPath() {
 	const stepsOrder = steps.map((step) => step.getAttribute('data-index'));
 	shapeOrders.forEach(shapeOrder => {
 		if (JSON.stringify(shapeOrder) === JSON.stringify(stepsOrder)) {
-			const sound = new Audio();
-			sound.src = './audio/confetti.wav';
-			sound.play();
+			audio.Confetti.play();
 			lastSound = false;
 			elmHome.classList.add('hidden');
 			elmScore.classList.add('hidden');
@@ -546,14 +519,14 @@ function toggleClasses(elements, state, classArray, delay = 0) {
 //================================================================================
 
 // Создание звука
-function createSound(path) {
-	const sound = new Audio();
-	const src = `./${path.split('../')[1]}`;
-	const name = src.split('audio/')[1].split('.')[0];
-	sound.src = src;
-	sounds[name] = sound;
-	sounds[name].play();
-}
+// function createSound(path) {
+// 	const sound = new Audio();
+// 	const src = `./${path.split('../')[1]}`;
+// 	const name = src.split('audio/')[1].split('.')[0];
+// 	sound.src = src;
+// 	sounds[name] = sound;
+// 	sounds[name].play();
+// }
 
 //================================================================================
 
