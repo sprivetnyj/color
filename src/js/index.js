@@ -5,7 +5,7 @@ import { audio } from './audio.js';
 
 //================================================================================
 
-const mode = 'prod';
+const mode = 'dev';
 vkBridge.send('VKWebAppInit');
 
 //================================================================================
@@ -13,8 +13,6 @@ vkBridge.send('VKWebAppInit');
 // Холст
 const canvas = document.querySelector('canvas');
 canvas.getContext('2d');
-// Для рисования средствами canvas
-// const c = canvas.getContext('2d');
 
 // Параметры размера холста
 const w = 360;
@@ -177,7 +175,7 @@ function gameStart() {
 
 //================================================================================
 
-let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons;
+let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index;
 elmScore.textContent = lvl + 1;
 
 createLvl(lvl);
@@ -193,12 +191,15 @@ function createLvl(i) {
 
 	elmShape.classList.add('shape');
 
+	index = -1;
+
 	Array.from(elmShape.children).forEach(element => {
-		if (element.tagName !== 'circle' && element.parentElement.tagName !== 'g') {
+		if (((element.tagName !== 'circle' || element.classList.contains('circle'))) && element.parentElement.tagName !== 'g') {
 			element.classList.add('shape__path');
 		} else {
-			if (element.tagName === 'circle') {
-				element.insertAdjacentHTML('beforebegin', `<g class="shape__button" data-color="${element.getAttribute('stroke')}">`);
+			if (element.tagName === 'circle' && !element.classList.contains('circle')) {
+				index++;
+				element.insertAdjacentHTML('beforebegin', `<g class="shape__button" data-index="${index}">`);
 
 				const elmShapeButton = element.previousElementSibling;
 				const elmShapeCircle = element;
@@ -233,7 +234,7 @@ function createLvl(i) {
 		}
 		let shapeBgPaths = true;
 		Array.from(element.children).forEach(el => {
-			if (el.tagName === 'circle') shapeBgPaths = false;
+			if (el.tagName === 'circle' && !el.classList.contains('circle')) shapeBgPaths = false;
 			if (!shapeBgPaths) {
 				el.remove();
 			} else {
@@ -281,6 +282,7 @@ document.addEventListener('click', (e) => {
 		gameStart();
 		// Вернуться на главный экран
 	} else if (el === elmHome) {
+		audio.Click.play();
 		// newScreen(elmScreenStart);
 		// Перемещение экрана игры слева на изначальное право со старта
 		// toggleClasses([elmScreenGame], 'remove', ['hidden', 'hidden--left']);
@@ -294,7 +296,7 @@ document.addEventListener('click', (e) => {
 						elmBack.classList.remove('hidden');
 					}
 					elmShapePaths.forEach(path => {
-						if (path.getAttribute('fill') === el.parentElement.getAttribute('data-color')) {
+						if (path.getAttribute('data-index') === el.parentElement.getAttribute('data-index')) {
 							elmShape.insertAdjacentElement('beforeend', path);
 							steps.push(path);
 							el.parentElement.classList.add('disabled');
@@ -311,7 +313,7 @@ document.addEventListener('click', (e) => {
 				if (elmShape.lastElementChild.classList.contains('shape__path')) {
 					steps.splice(steps.length - 1, 1);
 					elmShapeButtons.forEach(button => {
-						if (button.getAttribute('data-color') === elmShape.lastElementChild.getAttribute('fill')) {
+						if (button.getAttribute('data-index') === elmShape.lastElementChild.getAttribute('data-index')) {
 							button.classList.remove('disabled');
 						}
 					});
@@ -319,6 +321,7 @@ document.addEventListener('click', (e) => {
 					if (!steps.length) {
 						elmBack.classList.add('hidden');
 					}
+					audio.Path.play();
 				}
 			}
 			else if (el.closest('.reward')) {
@@ -331,6 +334,9 @@ document.addEventListener('click', (e) => {
 						helpText = getNoun(userHelp);
 					}
 					showPath();
+					if (lastSound) {
+						audio.Path.play();
+					}
 				} else {
 					// Показ рекламы + показ экрана конца игры
 					if (mode === 'prod') {
@@ -354,6 +360,7 @@ document.addEventListener('click', (e) => {
 						helpText = getNoun(userHelp);
 						elmReward.classList.remove('show');
 					}
+					audio.Click.play();
 				}
 				updateReward();
 			}
@@ -362,13 +369,6 @@ document.addEventListener('click', (e) => {
 	// Если клик по кнопке, то увеличим ее и создадим звук
 	if (el.closest('button')) {
 		animState([el.closest('button')], 200);
-		if (lastSound) {
-			if (!el.closest('.home')) {
-				audio.Path.play();
-			} else {
-				audio.Click.play();
-			}
-		}
 	}
 })
 
@@ -398,18 +398,20 @@ function checkLastPath() {
 				scalar: 1.2,
 				origin: { y: 0.7 }
 			});
-			setTimeout(() => {
-				lvl++;
-				lastSound = true;
-				elmScore.textContent = lvl + 1;
-				elmHome.classList.remove('hidden');
-				elmScore.classList.remove('hidden');
-				elmReward.classList.remove('hidden');
-				elmShape.remove();
-				elmShapeBg.remove();
-				elmShapePreview.remove();
-				createLvl(lvl);
-			}, 2000);
+			if (lvl < 29) {
+				setTimeout(() => {
+					lvl++;
+					lastSound = true;
+					elmScore.textContent = lvl + 1;
+					elmHome.classList.remove('hidden');
+					elmScore.classList.remove('hidden');
+					elmReward.classList.remove('hidden');
+					elmShape.remove();
+					elmShapeBg.remove();
+					elmShapePreview.remove();
+					createLvl(lvl);
+				}, 2000);
+			}
 		}
 	});
 }
@@ -427,7 +429,7 @@ function showPath() {
 					if (stepsOrder[j] !== orderIndex) {
 						if (i === shapeOrders.length - 1) {
 							elmShapeButtons.forEach(shapeButton => {
-								if (shapeButton.getAttribute('data-color') === steps[steps.length - 1].getAttribute('fill')) {
+								if (shapeButton.getAttribute('data-index') === steps[steps.length - 1].getAttribute('data-index')) {
 									shapeButton.classList.remove('disabled');
 								}
 							});
@@ -443,7 +445,7 @@ function showPath() {
 					elmShape.insertAdjacentElement('beforeend', elmShapePaths[orderIndex]);
 					steps.push(elmShapePaths[orderIndex]);
 					elmShapeButtons.forEach(shapeButton => {
-						if (shapeButton.getAttribute('data-color') === elmShapePaths[orderIndex].getAttribute('fill')) {
+						if (shapeButton.getAttribute('data-index') === elmShapePaths[orderIndex].getAttribute('data-index')) {
 							shapeButton.classList.add('disabled');
 						}
 					});
@@ -460,7 +462,7 @@ function showPath() {
 		elmShape.insertAdjacentElement('beforeend', path);
 		steps.push(path);
 		elmShapeButtons.forEach(shapeButton => {
-			if (shapeButton.getAttribute('data-color') === path.getAttribute('fill')) {
+			if (shapeButton.getAttribute('data-index') === path.getAttribute('data-index')) {
 				shapeButton.classList.add('disabled');
 			}
 		});
