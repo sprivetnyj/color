@@ -106,7 +106,7 @@ export const map = [
 	<circle cx="27" cy="134" r="26" fill="white" stroke="#FFE478" stroke-width="2"/>
 	<path d="M42 134L18 145.258L18 122.742L42 134Z" fill="#FFE478"/>
 	</svg>`,
-	`<svg width="223" height="385" viewBox="0 0 223 385" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.4;--preview-x:7px;--preview-y:0px;--shape-top:0px;--shape-left:83px;" data-order="0,1,2,3;0,2,1,3;0,2,3,1;">
+	`<svg width="223" height="385" viewBox="0 0 223 385" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.4;--preview-x:7px;--preview-y:0px;--shape-top:0px;--shape-left:83px;" data-order="0,1,2,3;0,2,1,3;0,2,3,1">
 	<rect x="62" y="59" width="40" height="267" fill="#EB564B"/>
 	<rect x="62" y="186" width="40" height="140" fill="#272736"/>
 	<path d="M0 121L62 59H164V121H62H0Z" fill="#7E7E8F"/>
@@ -148,7 +148,7 @@ export const map = [
 	<circle cx="164" cy="27" r="26" transform="rotate(90 164 27)" fill="white" stroke="#FFE478" stroke-width="2"/>
 	<path d="M164 42L152.742 18L175.258 18L164 42Z" fill="#FFE478"/>
 	</svg>`,
-	`<svg width="310" height="378" viewBox="0 0 310 378" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.27;--preview-x:0px;--preview-y:4px;" data-order="0,1,2,3;0,1,3,2;">
+	`<svg width="310" height="378" viewBox="0 0 310 378" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.27;--preview-x:0px;--preview-y:4px;" data-order="0,1,2,3;0,1,3,2">
 	<rect x="199" y="28" width="36" height="291" fill="#5E315B"/>
 	<path d="M59 158L155 59L251 158V319H59V158Z" fill="#BA6156"/>
 	<rect x="59" y="158" width="192" height="161" fill="#F2A65E"/>
@@ -162,7 +162,7 @@ export const map = [
 	<circle cx="27" cy="304" r="26" fill="white" stroke="#8C3F5D" stroke-width="2"/>
 	<path d="M42 304L18 315.258L18 292.742L42 304Z" fill="#8C3F5D"/>
 	</svg>`,
-	`<svg width="318" height="270" viewBox="0 0 318 270" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.44;--preview-x:-3px;--preview-y:10px;--shape-top:74px;--shape-left:6px;" data-order="0,1,2,3;0,3,1,2">
+	`<svg width="318" height="270" viewBox="0 0 318 270" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.44;--preview-x:-3px;--preview-y:10px;--shape-top:74px;--shape-left:6px;" data-order="0,1,2,3;0,3,1,2;0,1,3,2">
 	<rect x="139" width="120" height="211" fill="#4B5BAB"/>
 	<rect x="59" y="136" width="200" height="75" fill="#322947"/>
 	<rect x="59" y="136" width="200" height="50" fill="#4DA6FF"/>
@@ -176,7 +176,7 @@ export const map = [
 	<circle cx="87" cy="30" r="26" fill="white" stroke="#473B78" stroke-width="2"/>
 	<path d="M102 30L78 41.2583L78 18.7417L102 30Z" fill="#473B78"/>
 	</svg>`,
-	`<svg width="318" height="288" viewBox="0 0 318 288" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.55;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3;1,0,2,3;1,2,0,3;0,1,3,2;">
+	`<svg width="318" height="288" viewBox="0 0 318 288" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.55;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3;1,0,2,3;1,2,0,3;0,1,3,2">
 	<circle class="circle" cx="199" cy="89" r="30" fill="#EB564B"/>
 	<rect x="59" y="89" width="200" height="140" fill="#FFE478"/>
 	<rect x="59" y="89" width="200" height="80" fill="#EB564B"/>
@@ -190,7 +190,7 @@ export const map = [
 	<circle cx="291" cy="104" r="26" transform="rotate(-180 291 104)" fill="white" stroke="#96523D" stroke-width="2"/>
 	<path d="M276 104L300 92.7417L300 115.258L276 104Z" fill="#96523D"/>
 	</svg>`,
-	`<svg width="258" height="385" viewBox="0 0 258 385" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.4;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3";0,1,3,2>
+	`<svg width="258" height="385" viewBox="0 0 258 385" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.4;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3;0,1,3,2">
 	<rect x="59" y="241" width="140" height="85" fill="#606070"/>
 	<rect x="79" y="87" width="100" height="239" fill="#C2C2D1"/>
 	<rect x="94" y="59" width="70" height="267" fill="#7E7E8F"/>
@@ -260,7 +260,7 @@ export const map = [
 	<circle cx="120.561" cy="27.4312" r="26" fill="white" stroke="#FFB570" stroke-width="2"/>
 	<path d="M106.234 36.2854L119.994 13.6267L132.455 32.3813L106.234 36.2854Z" fill="#FFB570"/>
 	</svg>`,
-	`<svg width="217" height="373" viewBox="0 0 217 373" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.45;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4;0,2,1,3,4;0,2,3,1,4;0,2,3,4,1;2,0,3,4,1;2,3,0,4,1;2,3,0,1,4;2,0,3,1,4;">
+	`<svg width="217" height="373" viewBox="0 0 217 373" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.45;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4;0,2,1,3,4;0,2,3,1,4;0,2,3,4,1;2,0,3,4,1;2,3,0,4,1;2,3,0,1,4;2,0,3,1,4">
 	<path d="M135 314H59L135 112V314Z" fill="#3CA370"/>
 	<path d="M59 240L169 314H59V240Z" fill="#8FDE5D"/>
 	<path d="M104 120L129 144L154 120L129 59L104 120Z" fill="#FFE478"/>
@@ -348,7 +348,7 @@ export const map = [
 	<circle cx="27" cy="213" r="26" fill="white" stroke="#BA6156" stroke-width="2"/>
 	<path d="M42 213L18 224.258L18 201.742L42 213Z" fill="#BA6156"/>
 	</svg>`,
-	`<svg width="178" height="385" viewBox="0 0 178 385" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.4;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;0,1,2,4,3,5;0,1,2,4,5,3;;0,1,4,5,2,3;0,1,4,2,5,3;;0,1,4,2,3,5;">
+	`<svg width="178" height="385" viewBox="0 0 178 385" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.4;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;0,1,2,4,3,5;0,1,2,4,5,3;;0,1,4,5,2,3;0,1,4,2,5,3;;0,1,4,2,3,5">
 	<path d="M59.0005 149L89.0005 59L119 149V326H59.0005V149Z" fill="#4DA6FF"/>
 	<path d="M119 149L89.0001 59V149V326H119L119 149Z" fill="#4B5BAB"/>
 	<rect x="59.0005" y="276" width="60" height="50" fill="#322947"/>
@@ -408,7 +408,7 @@ export const map = [
 	<circle cx="303" cy="117" r="26" transform="rotate(-180 303 117)" fill="white" stroke="#4B5BAB" stroke-width="2"/>
 	<path d="M288 117L312 105.742L312 128.258L288 117Z" fill="#4B5BAB"/>
 	</svg>`,
-	`<svg width="304" height="385" viewBox="0 0 304 385" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.4;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;0,1,4,5,2,3;0,1,4,5,3,2;1,0,4,5,2,3;1,0,4,5,3,2;0,2,1,3,4,5;1,3,0,2,4,5;0,3,1,2,4,5;1,3,2,4,0,5;2,1,0,3,4,5;1,2,0,3,4,5;2,3,1,0,4,5;3,2,1,0,4,5;2,3,0,1,4,5;3,2,0,1,4,5;0,1,3,4,2,5;1,0,3,4,2,5;0,1,2,4,5,3;1,0,2,4,5,3;2,0,1,3,4,5;2,1,0,4,5,3;1,2,0,4,5,3;0,3,1,4,2,5;3,0,1,4,2,5;2,1,3,0,4,5;1,2,3,0,4,5;0,2,1,4,5,3;2,0,1,4,5,3;2,1,0,4,3,5;1,2,0,4,3,5;0,3,1,4,5,2;3,0,1,4,5,2;2,1,4,0,5,3;1,2,4,0,5,3;0,1,4,2,3,5;1,0,4,2,3,5;0,3,2,1,4,5;3,0,2,1,4,5;1,2,4,0,3,5;2,1,4,0,3,5;">
+	`<svg width="304" height="385" viewBox="0 0 304 385" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.4;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;0,1,4,5,2,3;0,1,4,5,3,2;1,0,4,5,2,3;1,0,4,5,3,2;0,2,1,3,4,5;1,3,0,2,4,5;0,3,1,2,4,5;1,3,2,4,0,5;2,1,0,3,4,5;1,2,0,3,4,5;2,3,1,0,4,5;3,2,1,0,4,5;2,3,0,1,4,5;3,2,0,1,4,5;0,1,3,4,2,5;1,0,3,4,2,5;0,1,2,4,5,3;1,0,2,4,5,3;2,0,1,3,4,5;2,1,0,4,5,3;1,2,0,4,5,3;0,3,1,4,2,5;3,0,1,4,2,5;2,1,3,0,4,5;1,2,3,0,4,5;0,2,1,4,5,3;2,0,1,4,5,3;2,1,0,4,3,5;1,2,0,4,3,5;0,3,1,4,5,2;3,0,1,4,5,2;2,1,4,0,5,3;1,2,4,0,5,3;0,1,4,2,3,5;1,0,4,2,3,5;0,3,2,1,4,5;3,0,2,1,4,5;1,2,4,0,3,5;2,1,4,0,3,5">
 	<rect width="36" height="129" transform="matrix(4.37114e-08 1 1 -4.37114e-08 59 199)" fill="#8FDE5D"/>
 	<rect x="245" y="235" width="36" height="129" transform="rotate(90 245 235)" fill="#3CA370"/>
 	<rect width="36" height="140" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 59 235)" fill="#8FDE5D"/>
