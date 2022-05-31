@@ -148,7 +148,7 @@ export const map = [
 	<circle cx="164" cy="27" r="26" transform="rotate(90 164 27)" fill="white" stroke="#FFE478" stroke-width="2"/>
 	<path d="M164 42L152.742 18L175.258 18L164 42Z" fill="#FFE478"/>
 	</svg>`,
-	`<svg width="310" height="378" viewBox="0 0 310 378" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.27;--preview-x:0px;--preview-y:4px;" data-order="0,1,2,3;0,1,3,2">
+	`<svg width="310" height="378" viewBox="0 0 310 378" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.27;--preview-x:0px;--preview-y:4px;" data-order="0,1,2,3">
 	<rect x="199" y="28" width="36" height="291" fill="#5E315B"/>
 	<path d="M59 158L155 59L251 158V319H59V158Z" fill="#BA6156"/>
 	<rect x="59" y="158" width="192" height="161" fill="#F2A65E"/>
