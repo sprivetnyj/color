@@ -1,6 +1,6 @@
 //================================================================================
 
-import { map } from './shapes.js';
+import { map } from './paths.js';
 import { audio } from './audio.js';
 
 //================================================================================
@@ -117,19 +117,19 @@ function gameStart() {
 // 	createSound(sndEnd);
 
 // 	// Показ рекламы + показ экрана конца игры
-// 	if (mode === 'prod') {
-// 		setTimeout(() => {
-// 			vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
-// 				.then(() => {
-// 					vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "interstitial" })
-// 				})
-// 			showResult();
-// 		}, 500);
-// 	} else {
-// 		setTimeout(() => {
-// 			showResult();
-// 		}, 500);
-// 	}
+// if (mode === 'prod') {
+// 	setTimeout(() => {
+// 		vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
+// 			.then(() => {
+// 				vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "interstitial" })
+// 			})
+// 		showResult();
+// 	}, 500);
+// } else {
+// 	setTimeout(() => {
+// 		showResult();
+// 	}, 500);
+// }
 // }
 
 //================================================================================
@@ -181,6 +181,17 @@ elmScore.textContent = lvl + 1;
 createLvl(lvl);
 
 function createLvl(i) {
+	if (mode === 'prod') {
+		if (i > 0) {
+			if (i % 3 === 0) {
+				vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
+					.then(() => {
+						vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "interstitial" })
+					})
+			}
+		}
+	}
+
 	elmShapeContainer.insertAdjacentHTML('afterbegin', map[i]);
 
 	elmShape = elmShapeContainer.querySelector('svg');
@@ -232,6 +243,7 @@ function createLvl(i) {
 		} else {
 			element.classList.add('shape-preview');
 		}
+		element.removeAttribute('data-order');
 		let shapeBgPaths = true;
 		Array.from(element.children).forEach(el => {
 			if (el.tagName === 'circle' && !el.classList.contains('circle')) shapeBgPaths = false;
@@ -239,7 +251,7 @@ function createLvl(i) {
 				el.remove();
 			} else {
 				if (element === elmShapeBg) {
-					el.setAttribute('fill', 'rgb(237, 245, 255)');
+					el.setAttribute('fill', '#e6f7ff');
 				}
 			}
 		});
@@ -398,7 +410,7 @@ function checkLastPath() {
 				scalar: 1.2,
 				origin: { y: 0.7 }
 			});
-			if (lvl < 29) {
+			if (lvl < 59) {
 				setTimeout(() => {
 					lvl++;
 					lastSound = true;

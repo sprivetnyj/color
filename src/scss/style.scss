@@ -2,15 +2,9 @@
 
 :root {
 	--color-white: #fff;
-	--color-blue-light: #e9f4ff;
-	--color-blue: #4da6ff;
-	--color-orange: #ff9166;
-	// --color-dark: #333;
-	// --color-red: rgb(242, 60, 49);
-	// --color-yellow: rgb(253, 205, 43);
-	// --color-green: rgb(95, 204, 59);
-	// --color-blue: rgb(3, 116, 255);
-	// --color-purple: rgb(186, 0, 223);
+	--color-blue-light: #e6f7ff;
+	--color-blue: #00aafe;
+	--color-orange: #ff9600;
 }
 
 div,
@@ -154,14 +148,14 @@ body {
 .shape-test {
 	position: absolute;
 	z-index: -1;
-	width: 110px;
-	height: 110px;
+	width: 100px;
+	height: 100px;
 	// border: 1px solid #999;
 }
 
 .shape-preview {
-	width: 110px;
-	height: 110px;
+	width: 100px;
+	height: 100px;
 	transform: scale(var(--preview-scale)) translate(var(--preview-x), var(--preview-y));
 }
 
