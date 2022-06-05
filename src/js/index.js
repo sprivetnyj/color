@@ -335,7 +335,7 @@ document.addEventListener('click', (e) => {
 					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help0'] })
 						.then(() => {
 							// Записываем подсказки в ключ хранилища
-							vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: helpKey });
+							vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: String(helpKey) });
 						});
 
 					showPath();
