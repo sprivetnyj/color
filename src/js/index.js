@@ -69,6 +69,7 @@ vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help0'] })
 	.then(data => {
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
 		if (!data.keys[1].value.length) data.keys[1].value = '3';
+		console.log(data.keys[1].value);
 		lvl = data.keys[0].value;
 		userHelp = data.keys[1].value;
 		elmScore.textContent = Number(lvl) + 1;
