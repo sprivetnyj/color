@@ -1,3 +1,4 @@
+// class="position" style="--preview-scale:0;--preview-x:0px;--preview-y:0px;--shape-top:54px;--shape-left:48px;" data-order="0,1,2,3,4;"
 export const map = [
 	`<svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.6;--preview-x:7px;--preview-y:7px;--shape-top:46px;--shape-left:8px;" data-order="0,1">
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M42.4193 225.881C93.1875 276.649 175.499 276.649 226.267 225.881C277.035 175.113 277.035 92.8017 226.267 42.0335L42.4193 225.881Z" fill="#8FDE5D"/>
@@ -611,6 +612,23 @@ export const map = [
 	<circle cx="27" cy="259" r="26" fill="white" stroke="#8414C7" stroke-width="2"/>
 	<path d="M42 259L18 270.258L18 247.742L42 259Z" fill="#8414C7"/>
 	</svg>`,
+	`<svg width="282" height="278" viewBox="0 0 282 278" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.32;--preview-x:9px;--preview-y:0px;--shape-top:54px;--shape-left:48px;" data-order="0,1,2,3,4;0,2,1,3,4;0,2,3,1,4;0,2,3,4,1;2,0,1,3,4;2,0,3,1,4;2,0,3,4,1;">
+	<rect x="111" y="59" width="20" height="160" fill="#00AAFE"/>
+	<rect x="151" y="59" width="20" height="40" transform="rotate(90 151 59)" fill="#007BFE"/>
+	<path d="M201 219L81 99L41 139L121 219H201Z" fill="#004CFE"/>
+	<rect x="81" y="99" width="60" height="120" fill="#007BFE"/>
+	<rect x="11" y="139" width="212" height="80" fill="#00AAFE"/>
+	<circle cx="121" cy="27" r="26" transform="rotate(90 121 27)" fill="white" stroke="#00AAFE" stroke-width="2"/>
+	<path d="M121 41.9999L109.742 17.9999L132.258 17.9999L121 41.9999Z" fill="#00AAFE"/>
+	<circle cx="183" cy="69" r="26" transform="rotate(180 183 69)" fill="white" stroke="#007BFE" stroke-width="2"/>
+	<path d="M168 69L192 57.7417L192 80.2583L168 69Z" fill="#007BFE"/>
+	<circle cx="38.1838" cy="96.1838" r="26" transform="rotate(45 38.1838 96.1838)" fill="white" stroke="#004CFE" stroke-width="2"/>
+	<path d="M48.7903 106.79L23.8589 97.7806L39.7806 81.8589L48.7903 106.79Z" fill="#004CFE"/>
+	<circle cx="131" cy="251" r="26" transform="rotate(-90 131 251)" fill="white" stroke="#007BFE" stroke-width="2"/>
+	<path d="M131 236L142.258 260L119.742 260L131 236Z" fill="#007BFE"/>
+	<circle cx="255" cy="179" r="26" transform="rotate(-180 255 179)" fill="white" stroke="#00AAFE" stroke-width="2"/>
+	<path d="M240 179L264 167.742L264 190.258L240 179Z" fill="#00AAFE"/>
+	</svg>`,
 	`<svg width="268" height="286" viewBox="0 0 268 286" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.4;--preview-x:5px;--preview-y:6px;--shape-top:65px;--shape-left:46px;" data-order="0,1,2,3,4;1,0,2,3,4">
 	<path d="M189.184 157.184L58.9998 27V87L189.184 217.184V157.184Z" fill="#8414C7"/>
 	<path d="M49 157L178.816 26.8162V86.8162L49 217V157Z" fill="#8414C7"/>
@@ -645,7 +663,7 @@ export const map = [
 	<circle cx="27" cy="219" r="26" fill="white" stroke="#F72828" stroke-width="2"/>
 	<path d="M42 219L18 230.258L18 207.742L42 219Z" fill="#F72828"/>
 	</svg>`,
-	`<svg width="283" height="291" viewBox="0 0 283 291" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.68;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4;0,3,1,2,4;0,3,1,4,2;0,2,1,3,4;0,3,2,1,4;0,1,3,2,4;0,1,3,4,2">
+	`<svg width="283" height="291" viewBox="0 0 283 291" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.68;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4;0,3,1,2,4;0,3,1,4,2;0,2,1,3,4;0,3,2,1,4;0,1,3,2,4;0,1,3,4,2;0,2,3,1,4">
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M138.645 121.645L208 191L209.355 192.355C212.726 188.985 215.617 185.136 217.919 180.919L217 180L150.081 113.081L99 62H89L84 67L138.645 121.645Z" fill="#21AA64"/>
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M119 62H99V133H99.0011C99.0008 133 99.0004 133 99 133V231C102.231 231.656 105.576 232 109 232C112.425 232 115.769 231.656 119 231V133C119 133 119 133 118.999 133H119V62Z" fill="#6EDF4A"/>
 	<path d="M69 82L89 62H129L149 82H129H89H69Z" fill="#6EDF4A"/>
@@ -821,26 +839,6 @@ export const map = [
 	<path d="M276 193L300 181.742L300 204.258L276 193Z" fill="#FE8F57"/>
 	<circle cx="291" cy="35" r="26" transform="rotate(180 291 35)" fill="white" stroke="#FE8F57" stroke-width="2"/>
 	<path d="M276 35L300 23.7417L300 46.2583L276 35Z" fill="#FE8F57"/>
-	</svg>`,
-	`<svg width="330" height="278" viewBox="0 0 330 278" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.5;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;0,2,1,3,4,5;0,2,3,1,4,5;0,2,3,4,1,5;0,2,3,4,5,1">
-	<rect x="179" y="59" width="20" height="160" fill="#00AAFE"/>
-	<rect x="219" y="59" width="20" height="40" transform="rotate(90 219 59)" fill="#007BFE"/>
-	<path d="M269 219L149 99L109 139L189 219H269Z" fill="#004CFE"/>
-	<rect x="149" y="99" width="60" height="120" fill="#007BFE"/>
-	<rect x="59" y="154" width="212" height="50" fill="#FFE601"/>
-	<rect x="79" y="139" width="192" height="80" fill="#00AAFE"/>
-	<circle cx="189" cy="27" r="26" transform="rotate(90 189 27)" fill="white" stroke="#00AAFE" stroke-width="2"/>
-	<path d="M189 42L177.742 18L200.258 18L189 42Z" fill="#00AAFE"/>
-	<circle cx="251" cy="69" r="26" transform="rotate(180 251 69)" fill="white" stroke="#007BFE" stroke-width="2"/>
-	<path d="M236 69L260 57.7417L260 80.2583L236 69Z" fill="#007BFE"/>
-	<circle cx="106.184" cy="96.1838" r="26" transform="rotate(45 106.184 96.1838)" fill="white" stroke="#004CFE" stroke-width="2"/>
-	<path d="M116.79 106.79L91.859 97.7807L107.781 81.859L116.79 106.79Z" fill="#004CFE"/>
-	<circle cx="179" cy="251" r="26" transform="rotate(-90 179 251)" fill="white" stroke="#007BFE" stroke-width="2"/>
-	<path d="M179 236L190.258 260L167.742 260L179 236Z" fill="#007BFE"/>
-	<circle cx="27" cy="179" r="26" fill="white" stroke="#FFE601" stroke-width="2"/>
-	<path d="M42 179L18 190.258L18 167.742L42 179Z" fill="#FFE601"/>
-	<circle cx="303" cy="179" r="26" transform="rotate(-180 303 179)" fill="white" stroke="#00AAFE" stroke-width="2"/>
-	<path d="M288 179L312 167.742L312 190.258L288 179Z" fill="#00AAFE"/>
 	</svg>`,
 	`<svg width="297" height="276" viewBox="0 0 297 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.35;--preview-x:0px;--preview-y:7px;--shape-top:76px;--shape-left:18px;" data-order="0,1,2,3,4,5;0,1,3,2,4,5;0,1,3,4,2,5;0,1,3,4,5,2;0,1,2,3,5,4;0,1,3,2,5,4;0,1,3,5,2,4;0,1,3,5,4,2;">
 	<rect x="59" y="57" width="179" height="100" fill="#F72828"/>

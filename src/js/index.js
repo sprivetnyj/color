@@ -56,6 +56,7 @@ const preloader = document.querySelector('.preloader');
 // Состояние игры
 let game = false;
 let lvlCompleted = false;
+let ad = -1;
 
 // Очки игрока
 let lvl = 0;
@@ -183,9 +184,10 @@ elmScore.textContent = lvl + 1;
 createLvl(lvl);
 
 function createLvl(i) {
+	ad++;
 	if (mode === 'prod') {
-		if (i > 0) {
-			if (i % 3 === 0) {
+		if (ad > 0) {
+			if (ad % 3 === 0) {
 				vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
 					.then(() => {
 						vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "interstitial" })
