@@ -167,7 +167,7 @@ setTimeout(() => {
 		helpText = getNoun(userHelp);
 	} else {
 		elmReward.classList.add('show');
-		helpText = 'подсказка?';
+		elmReward.lastElementChild.textContent = 'подсказка?';
 	}
 }, 2000);
 
