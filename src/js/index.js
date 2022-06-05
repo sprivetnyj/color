@@ -190,7 +190,7 @@ document.addEventListener('click', (e) => {
 		if (volume) audio.Click.play();
 		lvlCompleted === 'true' ? postText = 60 : postText = elmScore.textContent;
 		vkBridge.send('VKWebAppShowWallPostBox', {
-			'message': `Мой уровень в игре Game - ${postText}! Сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйся!\n\n#игры #vkgames #directgames`,
+			'message': `Мой уровень в игре Собирай Картинки! 🖼️ - ${postText}! Сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйся!\n\n#игры #vkgames #directgames`,
 			'attachments': 'https://vk.com/app8177225'
 		})
 	} else if (el === elmInvite) {
