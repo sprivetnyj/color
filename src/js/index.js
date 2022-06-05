@@ -70,6 +70,7 @@ if (mode === 'prod') {
 			if (!data.keys[0].value.length) data.keys[0].value = '1';
 			elmScore.textContent = data.keys[0].value;
 			lvl = data.keys[0].value;
+			console.log(lvl);
 			setTimeout(() => {
 				preloader.classList.add('hidden');
 			}, 1000);
@@ -164,7 +165,10 @@ function gameStart() {
 
 let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay;
 
-createLvl(lvl);
+setTimeout(() => {
+	console.log(lvl);
+	createLvl(lvl);
+}, 2000);
 
 function createLvl(i) {
 	ad++;
