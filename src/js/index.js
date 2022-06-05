@@ -5,7 +5,6 @@ import { audio } from './audio.js';
 
 //================================================================================
 
-// const mode = 'prod';
 vkBridge.send('VKWebAppInit');
 
 //================================================================================
@@ -45,8 +44,6 @@ const elmBack = document.querySelector('.back');
 const elmReward = document.querySelector('.reward');
 const elmScore = document.querySelector('.score');
 
-const elmResult = document.querySelector('.result');
-const elmHighscore = document.querySelector('.highscore');
 const elmFinish = document.querySelector('.finish');
 
 const preloader = document.querySelector('.preloader');
@@ -55,15 +52,16 @@ const preloader = document.querySelector('.preloader');
 
 // Состояние игры
 let game = false;
-let lvlCompleted;
 let ad = -1;
 
-// Очки игрока
-let lvl;
-let userHelp;
+let lvl = 0;
+let lvlCompleted = false;
+let userHelp = 3;
+// let lvl;
+// let lvlCompleted;
+// let userHelp;
 
 let lastSound = true;
-
 
 vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help2', 'lvlCompleted0'] })
 	.then(data => {
@@ -77,91 +75,13 @@ vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help2', 'lvlCompleted0']
 		setTimeout(() => {
 			preloader.classList.add('hidden');
 		}, 1000);
-	})
-setTimeout(() => {
-	preloader.classList.add('hidden');
-}, 2000);
+	});
 
+preloader.classList.add('hidden');
 
 //================================================================================
 
-// Запуск новой игровой сессии
 function gameStart() {
-	game = true;
-	// setTimeout(() => {
-	// 	// elmResult.classList.remove('record');
-	// }, 1000);
-}
-
-//================================================================================
-
-// Остановка игры
-// function gameEnd() {
-// 	game = false;
-// 	createSound(sndEnd);
-
-// 	// Показ рекламы + показ экрана конца игры
-// if (mode === 'prod') {
-// 	setTimeout(() => {
-// 		vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
-// 			.then(() => {
-// 				vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "interstitial" })
-// 			})
-// 		showResult();
-// 	}, 500);
-// } else {
-// 	setTimeout(() => {
-// 		showResult();
-// 	}, 500);
-// }
-// }
-
-//================================================================================
-
-// function showResult() {
-// 	const oldUserScore = userScore;
-// 	// Обнуление очков игрока
-// 	userScore = 0;
-// 	// Проверка на достижение нового рекорда
-// 	if (mode === 'prod') {
-// 		vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3'] })
-// 			.then(data => {
-// 				if (oldUserScore > data.keys[0].value) {
-// 					highScore = oldUserScore;
-// 					// Записываем рекорд в ключ хранилища
-// 					vkBridge.send('VKWebAppStorageSet', { key: 'lvl3', value: String(highScore) });
-// 					// Обновляем рекорд на стартовом экране
-// 					elmHighscore.firstElementChild.textContent = highScore;
-// 					// Показываем строчку с новым рекордом
-// 					elmResult.classList.add('record');
-// 					setTimeout(() => {
-// 						createSound(sndRecord);
-// 					}, 1000);
-// 				}
-// 			})
-// 	} else {
-// 		if (oldUserScore > highScore) {
-// 			highScore = oldUserScore;
-// 			elmHighscore.firstElementChild.textContent = highScore;
-// 			elmResult.classList.add('record');
-// 			setTimeout(() => {
-// 				createSound(sndRecord);
-// 			}, 1000);
-// 		}
-// 	}
-
-// 	// Показ очков за текущую игру
-// 	elmResult.firstElementChild.textContent = oldUserScore;
-
-// 	// Показ экрана конца игры
-// 	newScreen(elmScreenEnd);
-// }
-
-//================================================================================
-
-let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay, helpText, helpKey;
-
-setTimeout(() => {
 	createLvl(lvl);
 	if (userHelp !== 'null') {
 		elmReward.firstElementChild.textContent = userHelp;
@@ -171,7 +91,11 @@ setTimeout(() => {
 		elmReward.classList.add('show');
 		elmReward.lastElementChild.textContent = 'подсказка?';
 	}
-}, 2000);
+}
+
+//================================================================================
+
+let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay, helpText, helpKey;
 
 function createLvl(i) {
 	ad++;
@@ -257,39 +181,24 @@ function createLvl(i) {
 
 //================================================================================
 
-newScreen(elmScreenGame);
-gameStart();
-
 document.addEventListener('click', (e) => {
 	const el = e.target;
 	// Старт игры
 	if (el === elmPlay) {
-		// newScreen(elmScreenGame);
-		// gameStart();
-		// Опубликовать пост
-	} else if (el === elmPost) {
-		const printScores = elmHighscore.firstElementChild.textContent;
-		vkBridge.send('VKWebAppStorageGet', { 'keys': ['userHighscore'] })
-			.then(() => {
-				vkBridge.send('VKWebAppShowWallPostBox', {
-					'message': `Мой рекорд в игре Game - ${printScores} ${getNoun(printScores)}! сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйтесь!\n\n#игры #vkgames #directgames`,
-					'attachments': 'https://vk.com/appId'
-				})
-			});
-		// Пригласить друга
-	} else if (el === elmInvite) {
-		vkBridge.send('VKWebAppShowInviteBox')
-	} else if (el === elmRestart) {
 		newScreen(elmScreenGame);
 		gameStart();
-		// Вернуться на главный экран
+		// Опубликовать пост
+	} else if (el === elmPost) {
+		vkBridge.send('VKWebAppShowWallPostBox', {
+			// 'message': `Мой рекорд в игре Game - ${printScores} ${getNoun(printScores)}! сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйтесь!\n\n#игры #vkgames #directgames`,
+			'message': `Мой уровень в игре Game - ${lvl}!\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйтесь!\n\n#игры #vkgames #directgames`,
+			'attachments': 'https://vk.com/app8177225'
+		})
+	} else if (el === elmInvite) {
+		vkBridge.send('VKWebAppShowInviteBox')
 	} else if (el === elmHome) {
 		audio.Click.play();
-		// newScreen(elmScreenStart);
-		// Перемещение экрана игры слева на изначальное право со старта
-		// toggleClasses([elmScreenGame], 'remove', ['hidden', 'hidden--left']);
-		// toggleClasses([elmScreenGame], 'add', ['hidden', 'hidden--right']);
-		// Клик во время игры
+		newScreen(elmScreenStart);
 	} else {
 		if (game) {
 			if (el.closest('.shape__button')) {
@@ -516,9 +425,9 @@ function newScreen(newScreen) {
 			newScreenSide = 'hidden--left';
 		}
 		if (!screen.classList.contains('hidden')) {
-			toggleClasses([screen], 'add', ['hidden', oldScreenSide], 0);
+			toggleClasses([screen], 'add', ['hidden', oldScreenSide], 500);
 		} else if (screen === newScreen) {
-			toggleClasses([screen], 'remove', ['hidden', newScreenSide], 0);
+			toggleClasses([screen], 'remove', ['hidden', newScreenSide], 500);
 		}
 	});
 }
@@ -539,18 +448,6 @@ function toggleClasses(elements, state, classArray, delay = 0) {
 		});
 	}, delay);
 }
-
-//================================================================================
-
-// Создание звука
-// function createSound(path) {
-// 	const sound = new Audio();
-// 	const src = `./${path.split('../')[1]}`;
-// 	const name = src.split('audio/')[1].split('.')[0];
-// 	sound.src = src;
-// 	sounds[name] = sound;
-// 	sounds[name].play();
-// }
 
 //================================================================================
 

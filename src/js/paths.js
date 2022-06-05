@@ -680,7 +680,7 @@ export const map = [
 	<circle cx="27" cy="182" r="26" fill="white" stroke="#F72828" stroke-width="2"/>
 	<path d="M42 182L18 193.258L18 170.742L42 182Z" fill="#F72828"/>
 	</svg>`,
-	`<svg width="278" height="360" viewBox="0 0 278 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.48;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;1,0,2,3,4,5;1,2,3,0,4,5;2,1,0,3,4,5;2,3,4,5,1,0;2,3,4,5,0,1;2,1,3,4,5,0;2,3,1,4,0,5;2,0,1,3,4,5;1,2,3,4,5,0;1,2,3,4,0,5;2,1,3,4,0,5;2,1,3,0,4,5;0,2,3,4,1,5;2,0,3,4,1,5;2,3,1,0,4,5;2,3,0,1,4,5">
+	`<svg width="278" height="360" viewBox="0 0 278 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.48;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;1,0,2,3,4,5;1,2,3,0,4,5;2,1,0,3,4,5;2,3,4,5,1,0;2,3,4,5,0,1;2,1,3,4,5,0;2,3,1,4,0,5;2,0,1,3,4,5;1,2,3,4,5,0;1,2,3,4,0,5;2,1,3,4,0,5;2,1,3,0,4,5;0,2,3,4,1,5;2,0,3,4,1,5;2,3,1,0,4,5;2,3,0,1,4,5;1,2,0,3,4,5">
 	<rect x="199" y="199" width="20" height="100" fill="#FE8F57"/>
 	<rect x="129" y="59" width="20" height="240" fill="#FE8F57"/>
 	<rect x="219" y="199" width="20" height="160" transform="rotate(90 219 199)" fill="#FE8F57"/>
