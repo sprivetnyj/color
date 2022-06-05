@@ -65,12 +65,11 @@ let userHelp = 3;
 let lastSound = true;
 
 if (mode === 'prod') {
-	vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl0'] })
+	vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl1'] })
 		.then(data => {
-			if (!data.keys[0].value.length) data.keys[0].value = '1';
-			elmScore.textContent = data.keys[0].value;
+			if (!data.keys[0].value.length) data.keys[0].value = '0';
+			elmScore.textContent = data.keys[0].value + 1;
 			lvl = data.keys[0].value;
-			console.log(lvl);
 			setTimeout(() => {
 				preloader.classList.add('hidden');
 			}, 1000);
@@ -128,12 +127,12 @@ function gameStart() {
 // 	userScore = 0;
 // 	// Проверка на достижение нового рекорда
 // 	if (mode === 'prod') {
-// 		vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl0'] })
+// 		vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl1'] })
 // 			.then(data => {
 // 				if (oldUserScore > data.keys[0].value) {
 // 					highScore = oldUserScore;
 // 					// Записываем рекорд в ключ хранилища
-// 					vkBridge.send('VKWebAppStorageSet', { key: 'lvl0', value: String(highScore) });
+// 					vkBridge.send('VKWebAppStorageSet', { key: 'lvl1', value: String(highScore) });
 // 					// Обновляем рекорд на стартовом экране
 // 					elmHighscore.firstElementChild.textContent = highScore;
 // 					// Показываем строчку с новым рекордом
@@ -166,7 +165,6 @@ function gameStart() {
 let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay;
 
 setTimeout(() => {
-	console.log(lvl);
 	createLvl(lvl);
 }, 2000);
 
@@ -401,12 +399,12 @@ function checkLastPath() {
 			}
 			setTimeout(() => {
 				!lvlCompleted ? lvl++ : lvl = Math.floor(Math.random() * 59);
+				elmScore.textContent = lvl + 1;
 
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl0'] })
-					.then(data => {
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl1'] })
+					.then(() => {
 						// Записываем рекорд в ключ хранилища
-						vkBridge.send('VKWebAppStorageSet', { key: 'lvl0', value: String(lvl) });
-						elmScore.textContent = data.keys[0].value;
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvl1', value: String(lvl) });
 					})
 
 				lastSound = true;
