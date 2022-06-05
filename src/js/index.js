@@ -275,7 +275,7 @@ document.addEventListener('click', (e) => {
 									})
 
 								helpText = getNoun(userHelp);
-								elmReward.classList.remove('show');
+								toggleClasses([elmReward], 'remove', ['show', 'error'], 0);
 								updateReward();
 							})
 							.catch(() => {
