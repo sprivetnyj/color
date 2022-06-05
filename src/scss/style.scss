@@ -266,6 +266,9 @@ body {
 	left: 277px;
 	background-size: 75%;
 	background-image: url("../img/volume-on.svg");
+	&.off {
+		background-image: url("../img/volume-off.svg");
+	}
 	&.scale {
 		transform: scale(1.1);
 	}

@@ -30,16 +30,17 @@ const elmWrapper = document.querySelector('.wrapper');
 const elmScreens = document.querySelectorAll('.screen');
 const elmScreenStart = document.querySelector('.screen--start');
 const elmScreenGame = document.querySelector('.screen--game');
-const elmScreenEnd = document.querySelector('.screen--end');
 
 const elmShapeContainer = elmScreenGame.querySelector('.shape-container');
 const elmShapePreviewContainer = elmScreenGame.querySelector('.shape-preview-container');
 
 const elmPlay = document.querySelector('.play');
+const elmGroup = document.querySelector('.group');
 const elmPost = document.querySelector('.post');
 const elmInvite = document.querySelector('.invite');
+const elmVolume = document.querySelector('.volume');
+
 const elmHome = document.querySelector('.home');
-const elmRestart = document.querySelector('.restart');
 const elmBack = document.querySelector('.back');
 const elmReward = document.querySelector('.reward');
 const elmScore = document.querySelector('.score');
@@ -50,16 +51,13 @@ const preloader = document.querySelector('.preloader');
 
 //================================================================================
 
-// Состояние игры
-let game = false;
+let volume = true;
+
 let ad = -1;
 
-let lvl = 0;
-let lvlCompleted = false;
-let userHelp = 3;
-// let lvl;
-// let lvlCompleted;
-// let userHelp;
+let lvl;
+let lvlCompleted;
+let userHelp;
 
 let lastSound = true;
 
@@ -183,102 +181,106 @@ function createLvl(i) {
 
 document.addEventListener('click', (e) => {
 	const el = e.target;
-	// Старт игры
 	if (el === elmPlay) {
 		newScreen(elmScreenGame);
 		gameStart();
-		// Опубликовать пост
+	} else if (el === elmGroup) {
+		vkBridge.send('VKWebAppJoinGroup', { 'group_id': 213140436 });
 	} else if (el === elmPost) {
 		vkBridge.send('VKWebAppShowWallPostBox', {
-			// 'message': `Мой рекорд в игре Game - ${printScores} ${getNoun(printScores)}! сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйтесь!\n\n#игры #vkgames #directgames`,
-			'message': `Мой уровень в игре Game - ${lvl}!\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйтесь!\n\n#игры #vkgames #directgames`,
+			'message': `Мой уровень в игре Game - ${elmScore}!\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйтесь!\n\n#игры #vkgames #directgames`,
 			'attachments': 'https://vk.com/app8177225'
 		})
 	} else if (el === elmInvite) {
 		vkBridge.send('VKWebAppShowInviteBox')
 	} else if (el === elmHome) {
-		audio.Click.play();
+		if (volume) audio.Click.play();
 		newScreen(elmScreenStart);
+	} else if (el === elmVolume) {
+		volume = !volume;
+		elmVolume.classList.toggle('off');
 	} else {
-		if (game) {
-			if (el.closest('.shape__button')) {
-				if (!el.parentElement.classList.contains('disabled')) {
-					if (!steps.length) elmBack.classList.remove('hidden');
-					elmShapePaths.forEach(path => {
-						if (path.getAttribute('data-index') === el.parentElement.getAttribute('data-index')) {
-							elmShape.insertAdjacentElement('beforeend', path);
-							steps.push(path);
-							el.parentElement.classList.add('disabled');
-							if (elmShapeButtons.length === steps.length) {
-								checkLastPath();
-							}
+		if (el.closest('.shape__button')) {
+			if (!el.parentElement.classList.contains('disabled')) {
+				if (!steps.length) elmBack.classList.remove('hidden');
+				elmShapePaths.forEach(path => {
+					if (path.getAttribute('data-index') === el.parentElement.getAttribute('data-index')) {
+						elmShape.insertAdjacentElement('beforeend', path);
+						steps.push(path);
+						el.parentElement.classList.add('disabled');
+						if (elmShapeButtons.length === steps.length) {
+							checkLastPath();
 						}
-					});
+					}
+				});
+				if (volume) {
 					if (lastSound) audio.Path.play();
-				}
-			} else if (el === elmBack) {
-				if (elmShape.lastElementChild.classList.contains('shape__path')) {
-					steps.splice(steps.length - 1, 1);
-					elmShapeButtons.forEach(button => {
-						if (button.getAttribute('data-index') === elmShape.lastElementChild.getAttribute('data-index')) {
-							button.classList.remove('disabled');
-						}
-					});
-					elmShape.lastElementChild.remove();
-					if (!steps.length) elmBack.classList.add('hidden');
-					audio.Path.play();
 				}
 			}
-			else if (el.closest('.reward')) {
-				if (userHelp !== 'null') {
-					userHelp--;
-
-					if (userHelp < 1) {
-						helpText = 'подсказка?';
-						elmReward.classList.add('show');
-						userHelp = 'null';
-						helpKey = userHelp;
-					} else {
-						helpText = getNoun(userHelp);
-						helpKey = String(userHelp);
+		} else if (el === elmBack) {
+			if (elmShape.lastElementChild.classList.contains('shape__path')) {
+				steps.splice(steps.length - 1, 1);
+				elmShapeButtons.forEach(button => {
+					if (button.getAttribute('data-index') === elmShape.lastElementChild.getAttribute('data-index')) {
+						button.classList.remove('disabled');
 					}
+				});
+				elmShape.lastElementChild.remove();
+				if (!steps.length) elmBack.classList.add('hidden');
+				if (volume) audio.Path.play();
+			}
+		}
+		else if (el.closest('.reward')) {
+			if (userHelp !== 'null') {
+				userHelp--;
 
-					updateReward();
-
-					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
-						.then(() => {
-							// Записываем подсказки в ключ хранилища
-							vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: helpKey });
-						});
-
-					showPath();
-					if (lastSound) audio.Path.play();
+				if (userHelp < 1) {
+					helpText = 'подсказка?';
+					elmReward.classList.add('show');
+					userHelp = 'null';
+					helpKey = userHelp;
 				} else {
-					// Показ рекламы + показ экрана конца игры
-					vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "reward" })
-						.then(() => {
-							vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "reward", "use_waterfall": true })
-								.then(() => {
-									userHelp = 3;
-
-									vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
-										.then(() => {
-											// Записываем подсказки в ключ хранилища
-											vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: String(userHelp) });
-										})
-
-									helpText = getNoun(userHelp);
-									elmReward.classList.remove('show');
-									updateReward();
-								})
-								.catch(() => {
-									helpText = 'нет рекламы';
-									elmReward.classList.add('error');
-									updateReward();
-								})
-						})
-					audio.Click.play();
+					helpText = getNoun(userHelp);
+					helpKey = String(userHelp);
 				}
+
+				updateReward();
+
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
+					.then(() => {
+						// Записываем подсказки в ключ хранилища
+						vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: helpKey });
+					});
+
+				showPath();
+				if (volume) {
+					if (lastSound) audio.Path.play();
+				}
+			} else {
+				// Показ рекламы + показ экрана конца игры
+				vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "reward" })
+					.then(() => {
+						vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "reward", "use_waterfall": true })
+							.then(() => {
+								userHelp = 3;
+
+								vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
+									.then(() => {
+										// Записываем подсказки в ключ хранилища
+										vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: String(userHelp) });
+									})
+
+								helpText = getNoun(userHelp);
+								elmReward.classList.remove('show');
+								updateReward();
+							})
+							.catch(() => {
+								helpText = 'нет рекламы';
+								elmReward.classList.add('error');
+								updateReward();
+							})
+					})
+				if (volume) audio.Click.play();
 			}
 		}
 	}
@@ -299,7 +301,7 @@ function checkLastPath() {
 	const stepsOrder = steps.map((step) => step.getAttribute('data-index'));
 	shapeOrders.forEach(shapeOrder => {
 		if (JSON.stringify(shapeOrder) === JSON.stringify(stepsOrder)) {
-			audio.Confetti.play();
+			if (volume) audio.Confetti.play();
 			lastSound = false;
 			toggleClasses([elmHome, elmScore, elmBack, elmReward], 'add', ['hidden'], 0);
 			confetti({
