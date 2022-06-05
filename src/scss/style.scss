@@ -65,6 +65,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	border: 1px solid #000;
 	transition: left 0.5s, visibility 0.5s;
 	&.hidden {
 		visibility: hidden;
@@ -101,7 +102,7 @@ body {
 		border-left: 45px solid var(--color-white);
 	}
 	&.scale {
-		transform: translate(-50%, -50%) scale(1.2);
+		transform: translate(-50%, -50%) scale(1.1);
 	}
 }
 
@@ -338,48 +339,6 @@ body {
 		text-transform: uppercase;
 	}
 }
-
-// .bottom {
-// 	position: absolute;
-// 	left: 15px;
-// 	bottom: 15px;
-// 	width: calc(100% - 30px);
-// 	height: 70px;
-// 	display: flex;
-// 	align-items: flex-end;
-// 	justify-content: space-between;
-// }
-
-// .icon {
-// 	width: 70px;
-// 	height: 70px;
-// 	border-radius: 15px;
-// background-color: var(--color-dark);
-// background-position: center;
-// background-repeat: no-repeat;
-// 	transition: transform 0.2s;
-// 	&.scale {
-// 		transform: scale(1.1);
-// 	}
-// }
-
-// .home {
-// 	background-size: 85%;
-// 	background-image: url("../img/home.svg");
-// }
-
-// .restart {
-// 	background-size: 85%;
-// 	background-image: url("../img/restart.svg");
-// }
-
-// .post {
-// 	background-image: url("../img/post.svg");
-// }
-
-// .invite {
-// 	background-image: url("../img/invite.svg");
-// }
 
 //================================================================================
 

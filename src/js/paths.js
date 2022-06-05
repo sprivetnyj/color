@@ -740,7 +740,7 @@ export const map = [
 	<circle cx="303" cy="117" r="26" transform="rotate(-180 303 117)" fill="white" stroke="#004CFE" stroke-width="2"/>
 	<path d="M288 117L312 105.742L312 128.258L288 117Z" fill="#004CFE"/>
 	</svg>`,
-	`<svg width="300" height="370" viewBox="0 0 300 370" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:-2px;--preview-y:0px;--shape-top:8px;--shape-left:8px;" data-order="0,1,2,3,4,5;0,2,1,3,4,5;">
+	`<svg width="300" height="370" viewBox="0 0 300 370" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:-2px;--preview-y:0px;--shape-top:8px;--shape-left:8px;" data-order="0,1,2,3,4,5;0,2,1,3,4,5;2,0,1,3,4,5">
 	<rect x="157" y="59" width="28" height="252" fill="#21AA64"/>
 	<rect x="101" y="87" width="112" height="224" fill="#6EDF4A"/>
 	<rect x="73.0002" y="115" width="168" height="28" fill="#6EDF4A"/>
