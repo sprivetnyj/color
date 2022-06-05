@@ -60,31 +60,26 @@ let ad = -1;
 
 // Очки игрока
 let lvl;
-let userHelp = 3;
+let userHelp;
 
 let lastSound = true;
 
-if (mode === 'prod') {
-	vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3'] })
-		.then(data => {
-			if (!data.keys[0].value.length) data.keys[0].value = '0';
-			lvl = data.keys[0].value;
-			elmScore.textContent = Number(lvl) + 1;
-			setTimeout(() => {
-				preloader.classList.add('hidden');
-			}, 1000);
-		})
-	setTimeout(() => {
-		preloader.classList.add('hidden');
-	}, 2000);
-} else {
-	setTimeout(() => {
-		preloader.classList.add('hidden');
-	}, 0);
-}
 
-elmReward.firstElementChild.textContent = userHelp;
-elmReward.lastElementChild.textContent = getNoun(userHelp);
+vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help0'] })
+	.then(data => {
+		if (!data.keys[0].value.length) data.keys[0].value = '0';
+		if (!data.keys[1].value.length) data.keys[1].value = '3';
+		lvl = data.keys[0].value;
+		userHelp = data.keys[1].value;
+		elmScore.textContent = Number(lvl) + 1;
+		setTimeout(() => {
+			preloader.classList.add('hidden');
+		}, 1000);
+	})
+setTimeout(() => {
+	preloader.classList.add('hidden');
+}, 2000);
+
 
 //================================================================================
 
@@ -162,22 +157,23 @@ function gameStart() {
 
 //================================================================================
 
-let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay;
+let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay, helpText;
 
 setTimeout(() => {
 	createLvl(lvl);
+	elmReward.firstElementChild.textContent = userHelp;
+	elmReward.lastElementChild.textContent = getNoun(userHelp);
+	helpText = getNoun(userHelp);
 }, 2000);
 
 function createLvl(i) {
 	ad++;
-	if (mode === 'prod') {
-		if (ad > 0) {
-			if (ad % 3 === 0) {
-				vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
-					.then(() => {
-						vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "interstitial" })
-					})
-			}
+	if (ad > 0) {
+		if (ad % 3 === 0) {
+			vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
+				.then(() => {
+					vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "interstitial" })
+				})
 		}
 	}
 
@@ -254,8 +250,6 @@ function createLvl(i) {
 
 //================================================================================
 
-let helpText = getNoun(userHelp);
-
 newScreen(elmScreenGame);
 gameStart();
 
@@ -322,37 +316,46 @@ document.addEventListener('click', (e) => {
 			else if (el.closest('.reward')) {
 				if (userHelp > 0) {
 					userHelp--;
+
+					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help0'] })
+						.then(() => {
+							// Записываем подсказки в ключ хранилища
+							vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: String(userHelp) });
+						});
+
 					if (userHelp < 1) {
 						helpText = 'подсказка?';
 						elmReward.classList.add('show')
 					} else {
 						helpText = getNoun(userHelp);
 					}
+
 					showPath();
 					if (lastSound) audio.Path.play();
 				} else {
 					// Показ рекламы + показ экрана конца игры
-					if (mode === 'prod') {
-						vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "reward" })
-							.then(() => {
-								vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "reward", "use_waterfall": true })
-									.then(() => {
-										userHelp = 3;
-										helpText = getNoun(userHelp);
-										elmReward.classList.remove('show');
-										updateReward();
-									})
-									.catch(() => {
-										helpText = 'нет рекламы';
-										elmReward.classList.add('error');
-										updateReward();
-									})
-							})
-					} else {
-						userHelp = 3;
-						helpText = getNoun(userHelp);
-						elmReward.classList.remove('show');
-					}
+					vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "reward" })
+						.then(() => {
+							vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "reward", "use_waterfall": true })
+								.then(() => {
+									userHelp = 3;
+
+									vkBridge.send('VKWebAppStorageGet', { 'keys': ['help0'] })
+										.then(() => {
+											// Записываем подсказки в ключ хранилища
+											vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: String(userHelp) });
+										})
+
+									helpText = getNoun(userHelp);
+									elmReward.classList.remove('show');
+									updateReward();
+								})
+								.catch(() => {
+									helpText = 'нет рекламы';
+									elmReward.classList.add('error');
+									updateReward();
+								})
+						})
 					audio.Click.play();
 				}
 				updateReward();
