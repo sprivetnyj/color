@@ -67,10 +67,8 @@ let lastSound = true;
 
 vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help1'] })
 	.then(data => {
-		console.log(data.keys[1].value);
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
 		if (!data.keys[1].value.length) data.keys[1].value = '3';
-		console.log(data.keys[1].value);
 		lvl = data.keys[0].value;
 		userHelp = data.keys[1].value;
 		elmScore.textContent = Number(lvl) + 1;
@@ -163,13 +161,14 @@ let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, el
 
 setTimeout(() => {
 	createLvl(lvl);
-	elmReward.firstElementChild.textContent = userHelp;
-	elmReward.lastElementChild.textContent = getNoun(userHelp);
-
-	helpText = getNoun(userHelp);
-
-	// helpText = 'подсказка?';
-	// elmReward.classList.add('show');
+	if (userHelp !== 'null') {
+		elmReward.firstElementChild.textContent = userHelp;
+		elmReward.lastElementChild.textContent = getNoun(userHelp);
+		helpText = getNoun(userHelp);
+	} else {
+		elmReward.classList.add('show');
+		helpText = 'подсказка?';
+	}
 }, 2000);
 
 function createLvl(i) {
