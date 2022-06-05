@@ -68,7 +68,7 @@ if (mode === 'prod') {
 	vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl1'] })
 		.then(data => {
 			if (!data.keys[0].value.length) data.keys[0].value = '0';
-			elmScore.textContent = data.keys[0].value + 1;
+			elmScore.textContent = Number(data.keys[0].value) + 1;
 			lvl = data.keys[0].value;
 			setTimeout(() => {
 				preloader.classList.add('hidden');
