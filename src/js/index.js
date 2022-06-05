@@ -71,6 +71,7 @@ vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help2', 'lvlCompleted0']
 		elmScore.textContent = Number(lvl) + 1;
 		setTimeout(() => {
 			preloader.classList.add('hidden');
+			gameStart();
 		}, 2000);
 	});
 
@@ -181,7 +182,6 @@ document.addEventListener('click', (e) => {
 	if (el === elmPlay) {
 		if (volume) audio.Click.play();
 		newScreen(elmScreenGame);
-		gameStart();
 	} else if (el === elmGroup) {
 		if (volume) audio.Click.play();
 		vkBridge.send('VKWebAppJoinGroup', { 'group_id': 213140436 });
