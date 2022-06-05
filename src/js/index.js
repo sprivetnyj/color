@@ -65,11 +65,11 @@ let userHelp;
 let lastSound = true;
 
 
-vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help1', 'lvlCompleted'] })
+vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help2', 'lvlCompleted0'] })
 	.then(data => {
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
 		if (!data.keys[1].value.length) data.keys[1].value = '3';
-		if (!data.keys[2].value.length) data.keys[1].value = 'false';
+		if (!data.keys[2].value.length) data.keys[2].value = 'false';
 		lvl = data.keys[0].value;
 		userHelp = data.keys[1].value;
 		lvlCompleted = data.keys[2].value;
@@ -336,10 +336,10 @@ document.addEventListener('click', (e) => {
 
 					updateReward();
 
-					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help1'] })
+					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
 						.then(() => {
 							// Записываем подсказки в ключ хранилища
-							vkBridge.send('VKWebAppStorageSet', { key: 'help1', value: helpKey });
+							vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: helpKey });
 						});
 
 					showPath();
@@ -352,10 +352,10 @@ document.addEventListener('click', (e) => {
 								.then(() => {
 									userHelp = 3;
 
-									vkBridge.send('VKWebAppStorageGet', { 'keys': ['help1'] })
+									vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
 										.then(() => {
 											// Записываем подсказки в ключ хранилища
-											vkBridge.send('VKWebAppStorageSet', { key: 'help1', value: String(userHelp) });
+											vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: String(userHelp) });
 										})
 
 									helpText = getNoun(userHelp);
@@ -410,9 +410,9 @@ function checkLastPath() {
 					}, delay);
 				}
 				lvlCompleted = 'true';
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvlCompleted'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvlCompleted0'] })
 					.then(() => {
-						vkBridge.send('VKWebAppStorageSet', { key: 'lvlCompleted', value: lvlCompleted });
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvlCompleted0', value: lvlCompleted });
 					});
 			}
 			setTimeout(() => {
