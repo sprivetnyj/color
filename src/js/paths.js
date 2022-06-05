@@ -459,7 +459,7 @@ export const map = [
 	<circle cx="27" cy="109" r="26" fill="white" stroke="#FE5CD7" stroke-width="2"/>
 	<path d="M42 109L18 120.258L18 97.7417L42 109Z" fill="#FE5CD7"/>
 	</svg>`,
-	`<svg width="188" height="378" viewBox="0 0 188 378" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:4px;--preview-y:0px;--shape-top:4px;--shape-left:86px;" data-order="0,1,2,3,4;0,2,1,3,4;1,0,2,3,4;1,2,0,3,4;2,0,1,3,4;2,1,0,3,4;0,1,2,4,3;0,2,1,4,3;1,0,2,4,3;1,2,0,4,3;2,0,1,4,3;2,1,0,4,3;0,1,4,2,3;1,4,0,2,3;1,4,2,0,3;2,1,4,0,3;0,1,2,4,3;1,0,4,2,3;1,2,4,1,3;1,2,4,0,3;">
+	`<svg width="188" height="378" viewBox="0 0 188 378" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:4px;--preview-y:0px;--shape-top:4px;--shape-left:86px;" data-order="0,1,2,3,4;0,2,1,3,4;1,0,2,3,4;1,2,0,3,4;2,0,1,3,4;2,1,0,3,4;0,1,2,4,3;0,2,1,4,3;1,0,2,4,3;1,2,0,4,3;2,0,1,4,3;2,1,0,4,3;0,1,4,2,3;1,4,0,2,3;1,4,2,0,3;2,1,4,0,3;1,0,4,2,3;1,2,4,1,3;1,2,4,0,3;">
 	<rect x="29" y="59" width="20" height="100" fill="#B1B1B1"/>
 	<rect x="69" y="59" width="20" height="260" fill="#B1B1B1"/>
 	<rect x="109" y="59" width="20" height="100" fill="#B1B1B1"/>

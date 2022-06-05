@@ -55,7 +55,7 @@ const preloader = document.querySelector('.preloader');
 
 // Состояние игры
 let game = false;
-let lvlCompleted = false;
+let lvlCompleted;
 let ad = -1;
 
 // Очки игрока
@@ -65,12 +65,14 @@ let userHelp;
 let lastSound = true;
 
 
-vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help1'] })
+vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help1', 'lvlCompleted'] })
 	.then(data => {
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
 		if (!data.keys[1].value.length) data.keys[1].value = '3';
+		if (!data.keys[2].value.length) data.keys[1].value = 'false';
 		lvl = data.keys[0].value;
 		userHelp = data.keys[1].value;
+		lvlCompleted = data.keys[2].value;
 		elmScore.textContent = Number(lvl) + 1;
 		setTimeout(() => {
 			preloader.classList.add('hidden');
@@ -400,24 +402,32 @@ function checkLastPath() {
 			});
 			delay = 2500;
 			if (lvl >= 59) {
-				if (!lvlCompleted) {
+				if (lvlCompleted === 'false') {
 					elmFinish.classList.remove('hidden');
 					delay = 4000;
 					setTimeout(() => {
 						elmFinish.classList.add('hidden');
 					}, delay);
 				}
-				lvlCompleted = true;
+				lvlCompleted = 'true';
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvlCompleted'] })
+					.then(() => {
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvlCompleted', value: lvlCompleted });
+					});
 			}
 			setTimeout(() => {
-				!lvlCompleted ? lvl++ : lvl = Math.floor(Math.random() * 59);
+				if (lvlCompleted === 'false') {
+					lvl++;
+				} else {
+					lvl = Math.floor(Math.random() * 59);
+				}
 				elmScore.textContent = lvl + 1;
 
 				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3'] })
 					.then(() => {
 						// Записываем рекорд в ключ хранилища
 						vkBridge.send('VKWebAppStorageSet', { key: 'lvl3', value: String(lvl) });
-					})
+					});
 
 				lastSound = true;
 				toggleClasses([elmHome, elmScore, elmReward], 'remove', ['hidden'], 0);
