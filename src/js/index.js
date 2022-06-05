@@ -47,6 +47,7 @@ const elmScore = document.querySelector('.score');
 
 const elmResult = document.querySelector('.result');
 const elmHighscore = document.querySelector('.highscore');
+const elmFinish = document.querySelector('.finish');
 
 const preloader = document.querySelector('.preloader');
 
@@ -54,6 +55,7 @@ const preloader = document.querySelector('.preloader');
 
 // Состояние игры
 let game = false;
+let lvlCompleted = false;
 
 // Очки игрока
 let lvl = 0;
@@ -175,7 +177,7 @@ function gameStart() {
 
 //================================================================================
 
-let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index;
+let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay;
 elmScore.textContent = lvl + 1;
 
 createLvl(lvl);
@@ -304,9 +306,7 @@ document.addEventListener('click', (e) => {
 		if (game) {
 			if (el.closest('.shape__button')) {
 				if (!el.parentElement.classList.contains('disabled')) {
-					if (!steps.length) {
-						elmBack.classList.remove('hidden');
-					}
+					if (!steps.length) elmBack.classList.remove('hidden');
 					elmShapePaths.forEach(path => {
 						if (path.getAttribute('data-index') === el.parentElement.getAttribute('data-index')) {
 							elmShape.insertAdjacentElement('beforeend', path);
@@ -317,9 +317,7 @@ document.addEventListener('click', (e) => {
 							}
 						}
 					});
-					if (lastSound) {
-						audio.Path.play();
-					}
+					if (lastSound) audio.Path.play();
 				}
 			} else if (el === elmBack) {
 				if (elmShape.lastElementChild.classList.contains('shape__path')) {
@@ -330,9 +328,7 @@ document.addEventListener('click', (e) => {
 						}
 					});
 					elmShape.lastElementChild.remove();
-					if (!steps.length) {
-						elmBack.classList.add('hidden');
-					}
+					if (!steps.length) elmBack.classList.add('hidden');
 					audio.Path.play();
 				}
 			}
@@ -346,9 +342,7 @@ document.addEventListener('click', (e) => {
 						helpText = getNoun(userHelp);
 					}
 					showPath();
-					if (lastSound) {
-						audio.Path.play();
-					}
+					if (lastSound) audio.Path.play();
 				} else {
 					// Показ рекламы + показ экрана конца игры
 					if (mode === 'prod') {
@@ -378,10 +372,8 @@ document.addEventListener('click', (e) => {
 			}
 		}
 	}
-	// Если клик по кнопке, то увеличим ее и создадим звук
-	if (el.closest('button')) {
-		animState([el.closest('button')], 200);
-	}
+	// Если клик по кнопке, то увеличим ее 
+	if (el.closest('button')) animState([el.closest('button')], 200);
 })
 
 //================================================================================
@@ -399,10 +391,7 @@ function checkLastPath() {
 		if (JSON.stringify(shapeOrder) === JSON.stringify(stepsOrder)) {
 			audio.Confetti.play();
 			lastSound = false;
-			elmHome.classList.add('hidden');
-			elmScore.classList.add('hidden');
-			elmBack.classList.add('hidden');
-			elmReward.classList.add('hidden');
+			toggleClasses([elmHome, elmScore, elmBack, elmReward], 'add', ['hidden'], 0);
 			confetti({
 				particleCount: 100,
 				spread: 70,
@@ -410,20 +399,27 @@ function checkLastPath() {
 				scalar: 1.2,
 				origin: { y: 0.7 }
 			});
-			if (lvl < 59) {
-				setTimeout(() => {
-					lvl++;
-					lastSound = true;
-					elmScore.textContent = lvl + 1;
-					elmHome.classList.remove('hidden');
-					elmScore.classList.remove('hidden');
-					elmReward.classList.remove('hidden');
-					elmShape.remove();
-					elmShapeBg.remove();
-					elmShapePreview.remove();
-					createLvl(lvl);
-				}, 2000);
+			delay = 2500;
+			if (lvl >= 59) {
+				if (!lvlCompleted) {
+					elmFinish.classList.remove('hidden');
+					delay = 4000;
+					setTimeout(() => {
+						elmFinish.classList.add('hidden');
+					}, delay);
+				}
+				lvlCompleted = true;
 			}
+			setTimeout(() => {
+				!lvlCompleted ? lvl++ : lvl = Math.floor(Math.random() * 59);
+				lastSound = true;
+				elmScore.textContent = lvl + 1;
+				toggleClasses([elmHome, elmScore, elmReward], 'remove', ['hidden'], 0);
+				elmShape.remove();
+				elmShapeBg.remove();
+				elmShapePreview.remove();
+				createLvl(lvl);
+			}, delay);
 		}
 	});
 }
@@ -461,9 +457,7 @@ function showPath() {
 							shapeButton.classList.add('disabled');
 						}
 					});
-					if (elmShapeButtons.length === steps.length) {
-						checkLastPath();
-					}
+					if (elmShapeButtons.length === steps.length) checkLastPath();
 					i = shapeOrders.length;
 					break;
 				}

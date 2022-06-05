@@ -267,7 +267,7 @@ export const map = [
 	<circle cx="27" cy="129" r="26" fill="white" stroke="#E1E1E1" stroke-width="2"/>
 	<path d="M42 129L18 140.258L18 117.742L42 129Z" fill="#E1E1E1"/>
 	</svg>`,
-	`<svg width="202" height="381" viewBox="0 0 202 381" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:2px;--preview-y:0px;--shape-top:2px;--shape-left:72px;" data-order="0,1,2,3;1,0,2,3;0,1,3,2;1,0,3,2">
+	`<svg width="202" height="381" viewBox="0 0 202 381" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:2px;--preview-y:0px;--shape-top:2px;--shape-left:72px;" data-order="0,1,2,3;1,0,2,3;0,1,3,2;	">
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M67 63C62.1588 64.4069 57.4804 66.1967 53 68.3345V236.299C53.0124 236.305 53.0247 236.311 53.0371 236.317H53V322.317H67V241.634V236.317V63Z" fill="#E15D3E"/>
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M119 236.317V63C123.841 64.4069 128.52 66.1967 133 68.3345V236.299C132.988 236.305 132.975 236.311 132.963 236.317H133V322.317H119V241.634V236.317Z" fill="#E15D3E"/>
 	<rect x="43" y="282" width="100" height="40" fill="#FFAD58"/>
@@ -662,7 +662,7 @@ export const map = [
 	<circle cx="27" cy="182" r="26" fill="white" stroke="#F72828" stroke-width="2"/>
 	<path d="M42 182L18 193.258L18 170.742L42 182Z" fill="#F72828"/>
 	</svg>`,
-	`<svg width="278" height="360" viewBox="0 0 278 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.48;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;1,0,2,3,4,5;1,2,3,0,4,5;2,1,0,3,4,5;2,3,4,5,1,0;2,3,4,5,0,1;2,1,3,4,5,0;2,3,1,4,0,5;2,0,1,3,4,5;1,2,3,4,5,0;1,2,3,4,0,5;2,1,3,4,0,5;2,1,3,0,4,5;0,2,3,4,1,5;2,0,3,4,1,5">
+	`<svg width="278" height="360" viewBox="0 0 278 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="--preview-scale:1.48;--preview-x:0px;--preview-y:0px;" data-order="0,1,2,3,4,5;1,0,2,3,4,5;1,2,3,0,4,5;2,1,0,3,4,5;2,3,4,5,1,0;2,3,4,5,0,1;2,1,3,4,5,0;2,3,1,4,0,5;2,0,1,3,4,5;1,2,3,4,5,0;1,2,3,4,0,5;2,1,3,4,0,5;2,1,3,0,4,5;0,2,3,4,1,5;2,0,3,4,1,5;2,3,1,0,4,5;2,3,0,1,4,5">
 	<rect x="199" y="199" width="20" height="100" fill="#FE8F57"/>
 	<rect x="129" y="59" width="20" height="240" fill="#FE8F57"/>
 	<rect x="219" y="199" width="20" height="160" transform="rotate(90 219 199)" fill="#FE8F57"/>
@@ -862,7 +862,7 @@ export const map = [
 	<circle cx="198" cy="249" r="26" transform="rotate(-90 198 249)" fill="white" stroke="#8D8D8D" stroke-width="2"/>
 	<path d="M198 234L209.258 258L186.742 258L198 234Z" fill="#8D8D8D"/>
 	</svg>`,
-	`<svg width="225" height="385" viewBox="0 0 225 385" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.35;--preview-x:7px;--preview-y:1px;--shape-top:0px;--shape-left:80px;" data-order="0,1,2,3,4,5,6;0,1,2,4,3,5,6;0,1,2,4,5,3,6;0,1,2,4,5,6,3">
+	`<svg width="225" height="385" viewBox="0 0 225 385" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.35;--preview-x:7px;--preview-y:1px;--shape-top:0px;--shape-left:80px;" data-order="0,1,2,3,4,5,6;0,1,2,4,3,5,6;0,1,2,4,5,3,6;0,1,2,4,5,6,3;0,1,4,2,3,5,6;0,1,4,5,2,3,6;0,1,4,5,6,2,3;0,1,4,2,5,3,6;0,1,4,2,5,6,3;0,1,4,5,2,6,3;">
 	<path d="M225 111L65 81L225 51L225 111Z" fill="#FFE601"/>
 	<rect x="65" y="59" width="40" height="267" fill="#004CFE"/>
 	<path d="M25 326L85 236L145 326H25Z" fill="#2B1A73"/>

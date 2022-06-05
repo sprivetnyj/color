@@ -191,6 +191,33 @@ body {
 	}
 }
 
+.finish {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	padding: 15px;
+	border-radius: 15px;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: var(--color-blue);
+	&::before {
+		content: "";
+		position: fixed;
+		z-index: -1;
+		opacity: 0.9;
+		top: 0;
+		left: 0;
+		width: 360px;
+		height: 640px;
+		transform: translateY(-277px);
+		background-color: var(--color-white);
+	}
+	&.hidden {
+		display: none;
+	}
+}
+
 //================================================================================
 
 .result {
