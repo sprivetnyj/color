@@ -59,22 +59,21 @@ let lvlCompleted = false;
 let ad = -1;
 
 // Очки игрока
-let lvl = 0;
-let userScore = 0;
-let highScore = 0;
+let lvl;
 let userHelp = 3;
 
 let lastSound = true;
 
 if (mode === 'prod') {
-	// vkBridge.send('VKWebAppStorageGet', { 'keys': ['highscore0'] })
-	// 	.then(data => {
-	// 		if (!data.keys[0].value.length) data.keys[0].value = '0';
-	// 		elmHighscore.firstElementChild.textContent = data.keys[0].value;
-	// 		setTimeout(() => {
-	// 			preloader.classList.add('hidden');
-	// 		}, 1000);
-	// 	})
+	vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl0'] })
+		.then(data => {
+			if (!data.keys[0].value.length) data.keys[0].value = '1';
+			elmScore.textContent = data.keys[0].value;
+			lvl = data.keys[0].value;
+			setTimeout(() => {
+				preloader.classList.add('hidden');
+			}, 1000);
+		})
 	setTimeout(() => {
 		preloader.classList.add('hidden');
 	}, 2000);
@@ -87,29 +86,14 @@ if (mode === 'prod') {
 elmReward.firstElementChild.textContent = userHelp;
 elmReward.lastElementChild.textContent = getNoun(userHelp);
 
-// Объект со всеми звуками
-let sounds = {};
-
-// Цветовые переменные из :root
-// const rootVariables = ['--color-red', '--color-yellow', '--color-green', '--color-blue', '--color-purple'];
-// const colors = rootVariables.map(variable => getComputedStyle(document.documentElement).getPropertyValue(variable).trimStart());
-
-//================================================================================
-
-// setTimeout(() => {
-// 	if (game) {
-
-// 	}
-// }, 16.666);
-
 //================================================================================
 
 // Запуск новой игровой сессии
 function gameStart() {
-	setTimeout(() => {
-		game = true;
-		// elmResult.classList.remove('record');
-	}, 1000);
+	game = true;
+	// setTimeout(() => {
+	// 	// elmResult.classList.remove('record');
+	// }, 1000);
 }
 
 //================================================================================
@@ -143,12 +127,12 @@ function gameStart() {
 // 	userScore = 0;
 // 	// Проверка на достижение нового рекорда
 // 	if (mode === 'prod') {
-// 		vkBridge.send('VKWebAppStorageGet', { 'keys': ['highscore0'] })
+// 		vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl0'] })
 // 			.then(data => {
 // 				if (oldUserScore > data.keys[0].value) {
 // 					highScore = oldUserScore;
 // 					// Записываем рекорд в ключ хранилища
-// 					vkBridge.send('VKWebAppStorageSet', { key: 'highscore0', value: String(highScore) });
+// 					vkBridge.send('VKWebAppStorageSet', { key: 'lvl0', value: String(highScore) });
 // 					// Обновляем рекорд на стартовом экране
 // 					elmHighscore.firstElementChild.textContent = highScore;
 // 					// Показываем строчку с новым рекордом
@@ -179,7 +163,6 @@ function gameStart() {
 //================================================================================
 
 let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay;
-elmScore.textContent = lvl + 1;
 
 createLvl(lvl);
 
@@ -414,8 +397,15 @@ function checkLastPath() {
 			}
 			setTimeout(() => {
 				!lvlCompleted ? lvl++ : lvl = Math.floor(Math.random() * 59);
+
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl0'] })
+					.then(data => {
+						// Записываем рекорд в ключ хранилища
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvl0', value: String(lvl) });
+						elmScore.textContent = data.keys[0].value;
+					})
+
 				lastSound = true;
-				elmScore.textContent = lvl + 1;
 				toggleClasses([elmHome, elmScore, elmReward], 'remove', ['hidden'], 0);
 				elmShape.remove();
 				elmShapeBg.remove();

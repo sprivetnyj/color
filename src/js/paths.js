@@ -268,7 +268,7 @@ export const map = [
 	<circle cx="27" cy="129" r="26" fill="white" stroke="#E1E1E1" stroke-width="2"/>
 	<path d="M42 129L18 140.258L18 117.742L42 129Z" fill="#E1E1E1"/>
 	</svg>`,
-	`<svg width="202" height="381" viewBox="0 0 202 381" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:2px;--preview-y:0px;--shape-top:2px;--shape-left:72px;" data-order="0,1,2,3;1,0,2,3;0,1,3,2;	">
+	`<svg width="202" height="381" viewBox="0 0 202 381" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.45;--preview-x:2px;--preview-y:0px;--shape-top:2px;--shape-left:72px;" data-order="0,1,2,3;0,1,3,2;1,0,2,3;1,0,3,2">
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M67 63C62.1588 64.4069 57.4804 66.1967 53 68.3345V236.299C53.0124 236.305 53.0247 236.311 53.0371 236.317H53V322.317H67V241.634V236.317V63Z" fill="#E15D3E"/>
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M119 236.317V63C123.841 64.4069 128.52 66.1967 133 68.3345V236.299C132.988 236.305 132.975 236.311 132.963 236.317H133V322.317H119V241.634V236.317Z" fill="#E15D3E"/>
 	<rect x="43" y="282" width="100" height="40" fill="#FFAD58"/>
@@ -544,7 +544,7 @@ export const map = [
 	<circle cx="27" cy="109" r="26" fill="white" stroke="#F72828" stroke-width="2"/>
 	<path d="M42 109L18 120.258L18 97.7417L42 109Z" fill="#F72828"/>
 	</svg>`,
-	`<svg width="294" height="251" viewBox="0 0 294 251" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.1;--preview-x:0px;--preview-y:-7px;--shape-top:37px;--shape-left:18px;" data-order="0,1,2,3,4;0,2,1,3,4;0,1,2,4,3;0,2,1,4,3">
+	`<svg width="294" height="251" viewBox="0 0 294 251" fill="none" xmlns="http://www.w3.org/2000/svg" class="position" style="--preview-scale:1.1;--preview-x:0px;--preview-y:-7px;--shape-top:37px;--shape-left:18px;" data-order="0,1,2,3,4;0,2,1,3,4;0,1,2,4,3;0,2,1,4,3;0,1,3,2,4">
 	<path d="M83 187V59H211V187L147 251L83 187Z" fill="#007BFE"/>
 	<path d="M19 123L83 59L211 187L147 251L19 123Z" fill="#00AAFE"/>
 	<path d="M275 123L211 59L83 187L147 251L275 123Z" fill="#004CFE"/>
