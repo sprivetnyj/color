@@ -65,7 +65,7 @@ let userHelp;
 let lastSound = true;
 
 
-vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help0'] })
+vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help1'] })
 	.then(data => {
 		console.log(data.keys[1].value);
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
@@ -330,12 +330,13 @@ document.addEventListener('click', (e) => {
 						helpKey = userHelp;
 					} else {
 						helpText = getNoun(userHelp);
+						helpKey = String(userHelp);
 					}
 
-					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help0'] })
+					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help1'] })
 						.then(() => {
 							// Записываем подсказки в ключ хранилища
-							vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: String(helpKey) });
+							vkBridge.send('VKWebAppStorageSet', { key: 'help1', value: helpKey });
 						});
 
 					showPath();
@@ -348,10 +349,10 @@ document.addEventListener('click', (e) => {
 								.then(() => {
 									userHelp = 3;
 
-									vkBridge.send('VKWebAppStorageGet', { 'keys': ['help0'] })
+									vkBridge.send('VKWebAppStorageGet', { 'keys': ['help1'] })
 										.then(() => {
 											// Записываем подсказки в ключ хранилища
-											vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: String(userHelp) });
+											vkBridge.send('VKWebAppStorageSet', { key: 'help1', value: String(userHelp) });
 										})
 
 									helpText = getNoun(userHelp);
