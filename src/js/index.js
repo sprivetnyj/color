@@ -60,7 +60,7 @@ let userHelp;
 
 let lastSound = true;
 
-vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help2', 'lvlCompleted0'] })
+vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl4', 'help3', 'lvlCompleted1'] })
 	.then(data => {
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
 		if (!data.keys[1].value.length) data.keys[1].value = '3';
@@ -186,9 +186,11 @@ document.addEventListener('click', (e) => {
 		if (volume) audio.Click.play();
 		vkBridge.send('VKWebAppJoinGroup', { 'group_id': 213140436 });
 	} else if (el === elmPost) {
+		let postText;
 		if (volume) audio.Click.play();
+		lvlCompleted ? postText = 60 : postText = elmScore.textContent;
 		vkBridge.send('VKWebAppShowWallPostBox', {
-			'message': `Мой уровень в игре Game - ${elmScore.textContent}! Сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйся!\n\n#игры #vkgames #directgames`,
+			'message': `Мой уровень в игре Game - ${postText}! Сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйся!\n\n#игры #vkgames #directgames`,
 			'attachments': 'https://vk.com/app8177225'
 		})
 	} else if (el === elmInvite) {
@@ -248,10 +250,10 @@ document.addEventListener('click', (e) => {
 
 				updateReward();
 
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['help3'] })
 					.then(() => {
 						// Записываем подсказки в ключ хранилища
-						vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: helpKey });
+						vkBridge.send('VKWebAppStorageSet', { key: 'help3', value: helpKey });
 					});
 
 				showPath();
@@ -266,10 +268,10 @@ document.addEventListener('click', (e) => {
 							.then(() => {
 								userHelp = 3;
 
-								vkBridge.send('VKWebAppStorageGet', { 'keys': ['help2'] })
+								vkBridge.send('VKWebAppStorageGet', { 'keys': ['help3'] })
 									.then(() => {
 										// Записываем подсказки в ключ хранилища
-										vkBridge.send('VKWebAppStorageSet', { key: 'help2', value: String(userHelp) });
+										vkBridge.send('VKWebAppStorageSet', { key: 'help3', value: String(userHelp) });
 									})
 
 								helpText = getNoun(userHelp);
@@ -323,9 +325,9 @@ function checkLastPath() {
 					}, delay);
 				}
 				lvlCompleted = 'true';
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvlCompleted0'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvlCompleted1'] })
 					.then(() => {
-						vkBridge.send('VKWebAppStorageSet', { key: 'lvlCompleted0', value: lvlCompleted });
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvlCompleted1', value: lvlCompleted });
 					});
 			}
 			setTimeout(() => {
@@ -336,10 +338,10 @@ function checkLastPath() {
 				}
 				elmScore.textContent = lvl + 1;
 
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl4'] })
 					.then(() => {
 						// Записываем рекорд в ключ хранилища
-						vkBridge.send('VKWebAppStorageSet', { key: 'lvl3', value: String(lvl) });
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvl4', value: String(lvl) });
 					});
 
 				lastSound = true;
