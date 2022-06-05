@@ -5,7 +5,7 @@ import { audio } from './audio.js';
 
 //================================================================================
 
-const mode = 'prod';
+// const mode = 'prod';
 vkBridge.send('VKWebAppInit');
 
 //================================================================================
@@ -69,7 +69,7 @@ vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help0'] })
 	.then(data => {
 		console.log(data.keys[1].value);
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
-		if (!data.keys[1].value.length && data.keys[1].value !== 0) data.keys[1].value = '3';
+		if (!data.keys[1].value.length) data.keys[1].value = '3';
 		console.log(data.keys[1].value);
 		lvl = data.keys[0].value;
 		userHelp = data.keys[1].value;
@@ -159,7 +159,7 @@ function gameStart() {
 
 //================================================================================
 
-let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay, helpText;
+let elmShape, shapeOrders, elmShapeBg, elmShapePreview, steps, elmShapePaths, elmShapeButtons, index, delay, helpText, helpKey;
 
 setTimeout(() => {
 	createLvl(lvl);
@@ -320,21 +320,23 @@ document.addEventListener('click', (e) => {
 				}
 			}
 			else if (el.closest('.reward')) {
-				if (userHelp > 0) {
+				if (userHelp !== 'null') {
 					userHelp--;
-
-					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help0'] })
-						.then(() => {
-							// Записываем подсказки в ключ хранилища
-							vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: String(userHelp) });
-						});
 
 					if (userHelp < 1) {
 						helpText = 'подсказка?';
 						elmReward.classList.add('show');
+						userHelp = 'null';
+						helpKey = userHelp;
 					} else {
 						helpText = getNoun(userHelp);
 					}
+
+					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help0'] })
+						.then(() => {
+							// Записываем подсказки в ключ хранилища
+							vkBridge.send('VKWebAppStorageSet', { key: 'help0', value: helpKey });
+						});
 
 					showPath();
 					if (lastSound) audio.Path.play();
