@@ -67,9 +67,10 @@ let lastSound = true;
 
 vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help0'] })
 	.then(data => {
-		if (!data.keys[0].value.length) data.keys[0].value = '0';
-		if (!data.keys[1].value.length) data.keys[1].value = '3';
 		console.log(data.keys[1].value);
+		if (!data.keys[0].value.length) data.keys[0].value = '0';
+		if (!data.keys[1].value.length && data.keys[1].value !== 0) data.keys[1].value = '3';
+		data.keys[1].value
 		lvl = data.keys[0].value;
 		userHelp = data.keys[1].value;
 		elmScore.textContent = Number(lvl) + 1;
@@ -164,7 +165,11 @@ setTimeout(() => {
 	createLvl(lvl);
 	elmReward.firstElementChild.textContent = userHelp;
 	elmReward.lastElementChild.textContent = getNoun(userHelp);
+
 	helpText = getNoun(userHelp);
+
+	// helpText = 'подсказка?';
+	// elmReward.classList.add('show');
 }, 2000);
 
 function createLvl(i) {
@@ -326,7 +331,7 @@ document.addEventListener('click', (e) => {
 
 					if (userHelp < 1) {
 						helpText = 'подсказка?';
-						elmReward.classList.add('show')
+						elmReward.classList.add('show');
 					} else {
 						helpText = getNoun(userHelp);
 					}
