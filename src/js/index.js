@@ -60,7 +60,7 @@ let userHelp;
 
 let lastSound = true;
 
-vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl4', 'help3', 'lvlCompleted1'] })
+vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl5', 'help4', 'lvlCompleted2'] })
 	.then(data => {
 		if (!data.keys[0].value.length) data.keys[0].value = '0';
 		if (!data.keys[1].value.length) data.keys[1].value = '3';
@@ -250,10 +250,10 @@ document.addEventListener('click', (e) => {
 
 				updateReward();
 
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['help3'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['help4'] })
 					.then(() => {
 						// Записываем подсказки в ключ хранилища
-						vkBridge.send('VKWebAppStorageSet', { key: 'help3', value: helpKey });
+						vkBridge.send('VKWebAppStorageSet', { key: 'help4', value: helpKey });
 					});
 
 				showPath();
@@ -268,10 +268,10 @@ document.addEventListener('click', (e) => {
 							.then(() => {
 								userHelp = 3;
 
-								vkBridge.send('VKWebAppStorageGet', { 'keys': ['help3'] })
+								vkBridge.send('VKWebAppStorageGet', { 'keys': ['help4'] })
 									.then(() => {
 										// Записываем подсказки в ключ хранилища
-										vkBridge.send('VKWebAppStorageSet', { key: 'help3', value: String(userHelp) });
+										vkBridge.send('VKWebAppStorageSet', { key: 'help4', value: String(userHelp) });
 									})
 
 								helpText = getNoun(userHelp);
@@ -325,19 +325,19 @@ function checkLastPath() {
 					}, delay);
 				}
 				lvlCompleted = 'true';
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvlCompleted1'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvlCompleted2'] })
 					.then(() => {
-						vkBridge.send('VKWebAppStorageSet', { key: 'lvlCompleted1', value: lvlCompleted });
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvlCompleted2', value: lvlCompleted });
 					});
 			}
 			setTimeout(() => {
 				lvlCompleted === 'false' ? lvl++ : lvl = Math.floor(Math.random() * 59);
 				elmScore.textContent = lvl + 1;
 
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl4'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl5'] })
 					.then(() => {
 						// Записываем рекорд в ключ хранилища
-						vkBridge.send('VKWebAppStorageSet', { key: 'lvl4', value: String(lvl) });
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvl5', value: String(lvl) });
 					});
 
 				lastSound = true;
