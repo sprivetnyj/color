@@ -188,7 +188,7 @@ document.addEventListener('click', (e) => {
 	} else if (el === elmPost) {
 		let postText;
 		if (volume) audio.Click.play();
-		lvlCompleted ? postText = 60 : postText = elmScore.textContent;
+		lvlCompleted === 'true' ? postText = 60 : postText = elmScore.textContent;
 		vkBridge.send('VKWebAppShowWallPostBox', {
 			'message': `Мой уровень в игре Game - ${postText}! Сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйся!\n\n#игры #vkgames #directgames`,
 			'attachments': 'https://vk.com/app8177225'
@@ -331,11 +331,7 @@ function checkLastPath() {
 					});
 			}
 			setTimeout(() => {
-				if (lvlCompleted === 'false') {
-					lvl++;
-				} else {
-					lvl = Math.floor(Math.random() * 59);
-				}
+				lvlCompleted === 'false' ? lvl++ : lvl = Math.floor(Math.random() * 59);
 				elmScore.textContent = lvl + 1;
 
 				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl4'] })
