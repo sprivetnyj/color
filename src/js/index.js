@@ -332,6 +332,8 @@ document.addEventListener('click', (e) => {
 						helpKey = String(userHelp);
 					}
 
+					updateReward();
+
 					vkBridge.send('VKWebAppStorageGet', { 'keys': ['help1'] })
 						.then(() => {
 							// Записываем подсказки в ключ хранилища
@@ -366,7 +368,6 @@ document.addEventListener('click', (e) => {
 						})
 					audio.Click.play();
 				}
-				updateReward();
 			}
 		}
 	}
