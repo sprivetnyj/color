@@ -56,7 +56,7 @@ const preloader = document.querySelector('.preloader');
 // Состояние игры
 let game = false;
 let lvlCompleted = false;
-let ad = -1;
+let ad;
 
 // Очки игрока
 let lvl;
@@ -65,11 +65,12 @@ let userHelp = 3;
 let lastSound = true;
 
 if (mode === 'prod') {
-	vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl1'] })
+	vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl2'] })
 		.then(data => {
 			if (!data.keys[0].value.length) data.keys[0].value = '0';
-			elmScore.textContent = Number(data.keys[0].value) + 1;
 			lvl = data.keys[0].value;
+			ad = lvl;
+			elmScore.textContent = Number(lvl) + 1;
 			setTimeout(() => {
 				preloader.classList.add('hidden');
 			}, 1000);
@@ -127,12 +128,12 @@ function gameStart() {
 // 	userScore = 0;
 // 	// Проверка на достижение нового рекорда
 // 	if (mode === 'prod') {
-// 		vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl1'] })
+// 		vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl2'] })
 // 			.then(data => {
 // 				if (oldUserScore > data.keys[0].value) {
 // 					highScore = oldUserScore;
 // 					// Записываем рекорд в ключ хранилища
-// 					vkBridge.send('VKWebAppStorageSet', { key: 'lvl1', value: String(highScore) });
+// 					vkBridge.send('VKWebAppStorageSet', { key: 'lvl2', value: String(highScore) });
 // 					// Обновляем рекорд на стартовом экране
 // 					elmHighscore.firstElementChild.textContent = highScore;
 // 					// Показываем строчку с новым рекордом
@@ -169,9 +170,9 @@ setTimeout(() => {
 }, 2000);
 
 function createLvl(i) {
-	ad++;
 	if (mode === 'prod') {
-		if (ad > 0) {
+		if (lvl > 0) {
+			ad++;
 			if (ad % 3 === 0) {
 				vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "interstitial" })
 					.then(() => {
@@ -399,12 +400,13 @@ function checkLastPath() {
 			}
 			setTimeout(() => {
 				!lvlCompleted ? lvl++ : lvl = Math.floor(Math.random() * 59);
+				ad = lvl;
 				elmScore.textContent = lvl + 1;
 
-				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl1'] })
+				vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl2'] })
 					.then(() => {
 						// Записываем рекорд в ключ хранилища
-						vkBridge.send('VKWebAppStorageSet', { key: 'lvl1', value: String(lvl) });
+						vkBridge.send('VKWebAppStorageSet', { key: 'lvl2', value: String(lvl) });
 					})
 
 				lastSound = true;
