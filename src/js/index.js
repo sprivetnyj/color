@@ -44,7 +44,6 @@ const elmHome = document.querySelector('.home');
 const elmBack = document.querySelector('.back');
 const elmReward = document.querySelector('.reward');
 const elmScore = document.querySelector('.score');
-
 const elmFinish = document.querySelector('.finish');
 
 const preloader = document.querySelector('.preloader');
@@ -72,10 +71,8 @@ vkBridge.send('VKWebAppStorageGet', { 'keys': ['lvl3', 'help2', 'lvlCompleted0']
 		elmScore.textContent = Number(lvl) + 1;
 		setTimeout(() => {
 			preloader.classList.add('hidden');
-		}, 1000);
+		}, 2000);
 	});
-
-preloader.classList.add('hidden');
 
 //================================================================================
 
@@ -182,22 +179,27 @@ function createLvl(i) {
 document.addEventListener('click', (e) => {
 	const el = e.target;
 	if (el === elmPlay) {
+		if (volume) audio.Click.play();
 		newScreen(elmScreenGame);
 		gameStart();
 	} else if (el === elmGroup) {
+		if (volume) audio.Click.play();
 		vkBridge.send('VKWebAppJoinGroup', { 'group_id': 213140436 });
 	} else if (el === elmPost) {
+		if (volume) audio.Click.play();
 		vkBridge.send('VKWebAppShowWallPostBox', {
-			'message': `Мой уровень в игре Game - ${elmScore}!\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйтесь!\n\n#игры #vkgames #directgames`,
+			'message': `Мой уровень в игре Game - ${elmScore.textContent}! Сможешь побить?\n\nOrby Games (vk.com/orby.games) - бесплатные игры для ВКонтакте. Присоединяйся!\n\n#игры #vkgames #directgames`,
 			'attachments': 'https://vk.com/app8177225'
 		})
 	} else if (el === elmInvite) {
+		if (volume) audio.Click.play();
 		vkBridge.send('VKWebAppShowInviteBox')
 	} else if (el === elmHome) {
 		if (volume) audio.Click.play();
 		newScreen(elmScreenStart);
 	} else if (el === elmVolume) {
 		volume = !volume;
+		if (volume) audio.Click.play();
 		elmVolume.classList.toggle('off');
 	} else {
 		if (el.closest('.shape__button')) {
